@@ -13,6 +13,7 @@ venv_name\Scripts\activate
 pip install .
 
 RUN django project
+(in the PizzaPyWebApp dir)
 python manage.py runserver
 
 
