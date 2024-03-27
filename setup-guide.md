@@ -3,19 +3,18 @@
 Initial Setup (NEED TO DO)
 
 - venv
-python -m venv venv_name
+  python -m venv venv_name
 
 - activating the script
-venv_name\Scripts\activate
-(to exit, type deactivate)
+  venv_name\Scripts\activate
+  (to exit, type deactivate)
 
 - to install all packages
-pip install .
+  pip install .
 
 RUN django project
 (in the PizzaPyWebApp dir)
 python manage.py runserver
-
 
 """ SIDE NOTES: """
 
@@ -28,3 +27,6 @@ python -m pip freeze > requirements.txt
 
 Installing of packages
 pip install package_name
+
+For production to collect static files
+python manage.py collectstatic

@@ -8,10 +8,12 @@
   </head>
   <body>
     <div class="container mt-4">{% block content %} {% endblock %}</div>
-
+    <p className="text-sky-500 dark:text-sky-400">TEST LAYOUT</p>
+    <button class="btn btn-primary">Primary</button>
+    <!-- Add links to HTMX and CSS file  -->
+    <script src="../static/js/htmx.min.js" defer></script>
     {% load static %}
-    <script src="{% static 'js/htmx.min.js' %}" defer></script>
-
-    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    <!-- <link rel="stylesheet" href="../static/css/custom.css" /> -->
   </body>
 </html>
