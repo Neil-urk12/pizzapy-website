@@ -30,3 +30,18 @@ pip install package_name
 
 For production to collect static files
 python manage.py collectstatic
+
+Removing files from the repo and not locally
+
+directory
+git rm --cached -r venv
+rm 'venv'
+
+files
+git rm --cached venv
+rm 'venv'
+
+do the git ignore and remove at the same the time
+git rm --cached (git ls-files -i -c -X .gitignore)
+rm 'venv'
+rm '/PizzaPyWebApp/js_lib/node_modules'
