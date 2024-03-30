@@ -2,19 +2,32 @@
 
 Initial Setup (NEED TO DO)
 
-- venv
+(if you don't have virtualenv installed only)
+pip install -U pip virtualenv 
+
+1.  venv
   python -m venv venv_name
 
-- activating the script
+2. activating the script
   venv_name\Scripts\activate
   (to exit, type deactivate)
 
-- to install all packages
+3. to install all packages
   pip install .
+
+  from requirements.txt
+  pip install -r requirements.txt
+
+FOR js libraries setup
+  
+4. cd PizzaPyWebApp/js_lib
+5. npm install
+
 
 RUN django project
 (in the PizzaPyWebApp dir)
-python manage.py runserver
+6. python manage.py runserver
+
 
 """ SIDE NOTES: """
 
