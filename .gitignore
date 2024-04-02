@@ -7,8 +7,7 @@ PizzaPyWebApp/app_web/__pycache__
 __pycache__/
 migrations/
 
-.historyPizzaPyWebApp/app_server/__pycache__
-PizzaPyWebApp/app_web/__pycache__
+.history
 
 
 
