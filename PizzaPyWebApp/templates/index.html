@@ -1,23 +1,60 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="flex items-center justify-center min-h-screen bg-gray-800">
   <div class="w-full max-w-md mx-auto">
-    <h2 class="mb-6 text-3xl font-bold text-center text-sky-500">Testing TailwindCSS</h2>
-
-    <form id="form" hx-encoding="multipart/form-data" enctype="multipart/form-data" method="post"
+    <h2 class="mb-6 text-3xl font-bold text-center text-sky-500">
+      Testing TailwindCSS
+    </h2>
+    <div class="drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <!-- Page content here -->
+        <label for="my-drawer" class="btn btn-primary drawer-button"
+          >Open drawer</label
+        >
+      </div>
+      <div class="drawer-side">
+        <label
+          for="my-drawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"></label>
+        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <!-- Sidebar content here -->
+          <li><a>Sidebar Item 1</a></li>
+          <li><a>Sidebar Item 2</a></li>
+        </ul>
+      </div>
+    </div>
+    <form
+      id="form"
+      hx-encoding="multipart/form-data"
+      enctype="multipart/form-data"
+      method="post"
       class="px-8 pt-6 pb-8 mb-4 bg-gray-900 rounded shadow-md">
       <div id="file-input-container" class="mb-4">
-        <input type="file" name="file" id="file"
+        <input
+          type="file"
+          name="file"
+          id="file"
           class="block w-full text-sm text-gray-300 bg-gray-700 border-gray-700 rounded file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-violet-500 file:text-white hover:file:bg-violet-600" />
         <p id="file-validation" class="hidden mt-2 text-sm text-red-500"></p>
       </div>
       <div class="flex justify-center mb-4">
-        <button type="button" id="upload-btn"
-          class="w-full px-6 py-3 text-lg text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Upload</button>
+        <button
+          type="button"
+          id="upload-btn"
+          class="w-full px-6 py-3 text-lg text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+          Upload
+        </button>
       </div>
-      <div id="progress-container" class="w-full bg-gray-700 rounded-full h-2.5 hidden">
-        <progress id="progress" value="0" max="100" class="w-full h-2.5 bg-blue-600 rounded-full"></progress>
+      <div
+        id="progress-container"
+        class="w-full bg-gray-700 rounded-full h-2.5 hidden">
+        <progress
+          id="progress"
+          value="0"
+          max="100"
+          class="w-full h-2.5 bg-blue-600 rounded-full"></progress>
       </div>
     </form>
   </div>
@@ -26,47 +63,47 @@
 <!-- Toast notification container -->
 <div id="toast-container" class="fixed bottom-0 right-0 p-4"></div>
 
-
-
 <script>
-  document.getElementById('upload-btn').addEventListener('click', function () {
-    const fileInput = document.getElementById('file');
-    const fileValidation = document.getElementById('file-validation');
-    const progressContainer = document.getElementById('progress-container');
-    const formData = new FormData(document.getElementById('form'));
+  document.getElementById("upload-btn").addEventListener("click", function () {
+    const fileInput = document.getElementById("file");
+    const fileValidation = document.getElementById("file-validation");
+    const progressContainer = document.getElementById("progress-container");
+    const formData = new FormData(document.getElementById("form"));
 
-    fileValidation.classList.add('hidden');
-    progressContainer.classList.add('hidden');
+    fileValidation.classList.add("hidden");
+    progressContainer.classList.add("hidden");
 
     if (fileInput.files.length > 0) {
-      progressContainer.classList.remove('hidden');
+      progressContainer.classList.remove("hidden");
 
-      fetch('/upload', {
-        method: 'POST',
+      fetch("/upload", {
+        method: "POST",
         body: formData,
       })
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok.');
-          return response.json();  // or .text() if the response is not JSON
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok.");
+          return response.json(); // or .text() if the response is not JSON
         })
-        .then(data => {
-          showToast('File uploaded successfully!', 'success');
-          progressContainer.classList.add('hidden');
+        .then((data) => {
+          showToast("File uploaded successfully!", "success");
+          progressContainer.classList.add("hidden");
         })
-        .catch(error => {
-          showToast('File upload failed!', 'error');
-          progressContainer.classList.add('hidden');
+        .catch((error) => {
+          showToast("File upload failed!", "error");
+          progressContainer.classList.add("hidden");
         });
     } else {
-      fileValidation.textContent = 'Please select a file to upload.';
-      fileValidation.classList.remove('hidden');
+      fileValidation.textContent = "Please select a file to upload.";
+      fileValidation.classList.remove("hidden");
     }
   });
 
   function showToast(message, type) {
-    const toastContainer = document.getElementById('toast-container');
-    const toast = document.createElement('div');
-    toast.className = `toast ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} rounded-lg px-4 py-2 shadow-lg m-2`;
+    const toastContainer = document.getElementById("toast-container");
+    const toast = document.createElement("div");
+    toast.className = `toast ${
+      type === "success" ? "bg-green-500" : "bg-red-500"
+    } rounded-lg px-4 py-2 shadow-lg m-2`;
     toast.innerHTML = `
     <div class="flex items-center justify-between">
       <span class="text-white">${message}</span>
@@ -82,7 +119,6 @@
       }
     }, 5000);
   }
-
 </script>
 
 {% endblock %}
