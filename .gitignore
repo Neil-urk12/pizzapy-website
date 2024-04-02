@@ -1,6 +1,13 @@
 venv/
 PizzaPyWebApp/js_lib/node_modules
 PizzaPyWebApp/app_server/__pycache__
+PizzaPyWebApp/app_server/migrations
+PizzaPyWebApp/app_web/__pycache__
+# .gitignore content
+__pycache__/
+migrations/
+
+.historyPizzaPyWebApp/app_server/__pycache__
 PizzaPyWebApp/app_web/__pycache__
 
 
