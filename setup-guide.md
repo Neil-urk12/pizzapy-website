@@ -3,7 +3,7 @@
 Initial Setup (NEED TO DO)
 
 (if you don't have virtualenv installed only)
-pip install -U pip virtualenv 
+pip install -U pip virtualenv
 
 1.  venv
   python -m venv venv_name
@@ -19,7 +19,7 @@ pip install -U pip virtualenv
   pip install -r requirements.txt
 
 FOR js libraries setup
-  
+
 4. cd PizzaPyWebApp/js_lib
 5. npm install
 
