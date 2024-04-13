@@ -1,4 +1,4 @@
 venv/
-PizzaPyWebApp/js_lib/node_modules
-
-
+node_modules/
+__pycache__/
+bun.lockb
