@@ -1,46 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dracula">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PIZZAPY WEBSITE</title>
-
-    <!-- CDN LINKS  -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css"
-      rel="stylesheet"
-      type="text/css" />
-
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/main.min.css' %}" />
+    <!-- <script src="{% static 'js/htmx.min.js' %}" defer></script> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/custom.css' %}" /> -->
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
   </head>
-
-  <body class="text-gray-800 bg-gray-100">
-    <div
-      class="flex flex-col items-center justify-center w-full min-h-screen bg-gray-800">
-      <!-- TEST LAYOUT text -->
-      <p class="text-sky-500 dark:text-sky-400">TEST LAYOUT</p>
-
-      <!-- Primary button -->
-      <button
-        class="px-4 py-2 text-white transition duration-200 ease-in bg-blue-500 rounded hover:bg-blue-600">
-        Primary
-      </button>
-
-      <!-- Content block where you can insert dynamic Django content -->
-      <div class="container p-4 mx-auto">
-        {% block content %} {% endblock %}
-      </div>
-    </div>
-
-    <!-- HTMX CDN SCRIPTS -->
+  <body>
+    <!-- use partials as if they are components like so -->
+    {% include 'partials/header.html' %}
+    <p className="text-sky-500 dark:text-sky-400">TEST LAYOUT</p>
+    <div class="container mt-4">{% block content %} {% endblock %}</div>
+    <button class="btn btn-primary">Primary</button>
+    <!-- Add links to HTMX and CSS file  -->
+    <!-- <script src="../static/js/htmx.min.js" defer></script> -->
     <script
       src="https://unpkg.com/htmx.org@1.9.2"
       integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
