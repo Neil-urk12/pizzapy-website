@@ -1,5 +1,18 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}
+The Pizzapy User Group
+{% endblock %}
+
+{% block header %}
 {% include 'partials/header.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'partials/countdown.html' %}
 {% include 'partials/hero.html' %}
-{% include 'partials/test.html' %}
+{% include 'partials/hero.html' %}
+{% endblock %}
+
+{% block footer %}
+{% include 'partials/footer.html' %}
 {% endblock %}

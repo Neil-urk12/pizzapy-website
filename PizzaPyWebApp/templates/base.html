@@ -5,17 +5,26 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PIZZAPY WEBSITE</title>
+  <title>{% block title %}{% endblock %}</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/output.css' %}" />
-</head>
-
-<body>
-  <div class="">{% block content %} {% endblock %}</div>
-  <button class="btn btn-primary">Primary</button>
   <script src="https://unpkg.com/htmx.org@1.9.2"
     integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
     crossorigin="anonymous"></script>
+</head>
+
+<body class="w-screen overflow-x-hidden bg-gray-100 dark:bg-gray-900 dark:text-white">
+  <header class="sticky top-0 left-0 w-full overflow-x-hidden text-white bg-slate-700">
+    {% block header %} {% endblock %}
+  </header>
+
+  <main class="flex flex-col items-center justify-center w-full overflow-x-hidden">
+    {% block content %} {% endblock %}
+  </main>
+
+  <footer class="w-screen overflow-x-hidden text-center bg-white dark:bg-gray-800">
+    {% block footer %} {% endblock %}
+  </footer>
 </body>
 
 </html>
