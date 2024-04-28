@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dracula">
+<html lang="en" data-theme="{{ theme }}">
 
 <head>
   <meta charset="UTF-8" />
@@ -13,18 +13,41 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body class="w-screen overflow-x-hidden bg-gray-100 dark:bg-gray-900 dark:text-white">
-  <header class="sticky top-0 left-0 w-full overflow-x-hidden text-white bg-slate-700">
+<body class="w-screen overflow-x-hidden text-gray-800 bg-gray-100 dark:bg-gray-900 dark:text-white">
+  <header class="sticky top-0 left-0 w-full overflow-x-hidden text-white bg-slate-700 dark:bg-slate-800">
     {% block header %} {% endblock %}
   </header>
 
-  <main class="flex flex-col items-center justify-center w-full overflow-x-hidden">
+  <main class="flex flex-col items-center justify-center w-full overflow-x-hidden text-gray-900 dark:text-gray-200">
     {% block content %} {% endblock %}
   </main>
 
-  <footer class="w-screen overflow-x-hidden text-center bg-white dark:bg-gray-800">
+  <footer class="w-screen overflow-x-hidden text-center text-gray-900 bg-white dark:bg-gray-800 dark:text-white">
     {% block footer %} {% endblock %}
   </footer>
+
+  <!-- Theme Switching Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const themeCheckbox = document.getElementById('theme-toggle');
+      if (themeCheckbox) {
+        // Update checkbox state based on the current theme
+        themeCheckbox.checked = localStorage.getItem('theme') === 'dark' || document.documentElement.getAttribute('data-theme') === 'dark';
+
+        themeCheckbox.addEventListener('change', function () {
+          const newTheme = this.checked ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        });
+      }
+
+      // Optionally load the theme from localStorage
+      const storedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', storedTheme);
+      themeCheckbox.checked = storedTheme === 'dark';
+    });
+  </script>
+
 </body>
 
 </html>

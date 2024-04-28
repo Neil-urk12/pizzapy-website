@@ -1,40 +1,41 @@
-<div>
-    <label class="z-0 swap swap-rotate">
-        <!-- this hidden checkbox controls the state -->
-        <input type="checkbox" class="theme-controller" value="synthwave" />
-        <!-- sun icon -->
-        <svg class="w-10 h-10 fill-current swap-off" width="100" height="100">
-            <use xlink:href="../../static/css/icons.svg#sun"></use>
-        </svg>
-        <!-- moon icon -->
-        <svg class="w-10 h-10 fill-current swap-on" width="100" height="100">
-            <use xlink:href="../../static/css/icons.svg#moon"></use>
-        </svg>
-    </label>
-</div>
+<label class="z-0 swap swap-rotate">
+    <!-- this hidden checkbox controls the state -->
+    <input type="checkbox" class="theme-controller" value="dark" />
+
+    <!-- sun icon -->
+    <svg class="w-10 h-10 fill-current swap-off " width="25" height="25">
+        <use xlink:href="../../static/css/icons.svg#sun"></use>
+    </svg>
+    <!-- moon icon -->
+    <svg class="w-10 h-10 fill-current swap-on" width="25" height="25">
+        <use xlink:href="../../static/css/icons.svg#moon"></use>
+    </svg>
+</label>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const themeCheckbox = document.querySelector(".theme-controller");
+        const lightTheme = 'light';  // Define light theme name
+        const darkTheme = 'dark';    // Define dark theme name
 
-        // Check localStorage for the theme preference and set it if it exists
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) {
-            document.documentElement.classList.add(savedTheme);
-            themeCheckbox.checked = savedTheme === "dark";
+        // Function to apply a theme
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeCheckbox.checked = (theme === darkTheme);
         }
 
+        // Load theme from localStorage or default to light
+        const savedTheme = localStorage.getItem("theme") || lightTheme;
+        applyTheme(savedTheme);
+
+        // Event listener for changing themes
         themeCheckbox.addEventListener("change", function () {
             if (this.checked) {
-                document.documentElement.classList.add("dark");
-                document.documentElement.classList.remove("light");
-                // Store the theme preference in localStorage
-                localStorage.setItem("theme", "dark");
+                applyTheme(darkTheme);
             } else {
-                document.documentElement.classList.add("light");
-                document.documentElement.classList.remove("dark");
-                // Store the theme preference in localStorage
-                localStorage.setItem("theme", "light");
+                applyTheme(lightTheme);
             }
         });
     });
+
 </script>
