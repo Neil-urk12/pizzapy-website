@@ -1,16 +1,16 @@
-<div class="h-4 px-2 sm:px-10 navbar bg-base-100 dark:bg-gray-700">
+<div class="h-4 px-2 sm:px-10 navbar bg-base-100 dark:bg-gray-700 ">
   {%include 'partials/_logo.html'%}
 
   <!-- Hide on small screens, show on medium screens and up -->
   <div class="hidden sm:flex navbar-center">
     <div class="flex-none">
       <ul class="px-1 menu menu-horizontal">
-        <li><a href="{% url 'index' %}"
-            class="text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Home</a></li>
-        <li><a href="{% url 'about_page' %}"
-            class="text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400">About Us</a></li>
-        <li><a href="{% url 'events' %}"
-            class="text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Events</a></li>
+        <li><a href="{% url 'index' %}" class=" dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Home</a>
+        </li>
+        <li><a href="{% url 'about_page' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">About
+            Us</a></li>
+        <li><a href="{% url 'events' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Events</a>
+        </li>
       </ul>
     </div>
   </div>
