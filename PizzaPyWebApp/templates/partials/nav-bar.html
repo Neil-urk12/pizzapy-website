@@ -12,18 +12,20 @@
 
 <div class="z-40 drawer-side">
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+
     <ul class="flex flex-col justify-between min-h-full p-4 menu w-80 bg-base-200 dark:bg-gray-900">
+        <div class="flex items-center justify-center h-full">{% include 'partials/_logo.html' %}</div>
 
         <!-- Dark mode bg color adjusted for visibility -->
         <div>
             <li><a href="{% url 'index' %}"
-                    class="text-gray-800 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400">Home</a>
+                    class="dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400">Home</a>
             </li>
             <li><a href="{% url 'about_page' %}"
-                    class="text-gray-800 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400">About Us</a>
+                    class="dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400">About Us</a>
             </li>
             <li><a href="{% url 'events' %}"
-                    class="text-gray-800 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400">Events</a>
+                    class="dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400">Events</a>
             </li>
         </div>
         <!-- Button at the Bottom -->
