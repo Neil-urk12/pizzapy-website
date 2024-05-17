@@ -1,0 +1,90 @@
+<div class="container gap-10 py-16 mx-auto overflow-hidden">
+    <h2 class="py-10 mb-12 text-2xl font-bold text-center">Special thanks to our sponsors</h2>
+    <div class="scroller" data-animated="true">
+        <div class="scroller__inner">
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=SmartFinder" alt="SmartFinder" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=Zoomerr" alt="Zoomerr" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=SHELLS" alt="SHELLS" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=WAVES" alt="WAVES" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=ArtVenue" alt="ArtVenue" class="h-16">
+            </a>
+            <!-- Duplicate the logos to create a continuous loop effect -->
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=SmartFinder" alt="SmartFinder" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=Zoomerr" alt="Zoomerr" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=SHELLS" alt="SHELLS" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=WAVES" alt="WAVES" class="h-16">
+            </a>
+            <a href="#yourlink" class="flex items-center px-6 py-4">
+                <img src="https://via.placeholder.com/150x50?text=ArtVenue" alt="ArtVenue" class="h-16">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .scroller {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .scroller__inner {
+        display: flex;
+        flex-wrap: nowrap;
+        width: max-content;
+        animation: scroll 20s linear infinite;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>
+
+<script type="text/javascript">
+    const scroller = document.querySelector('.scroller');
+    const scrollerInner = document.querySelector('.scroller__inner');
+
+    scroller.addEventListener('mouseover', () => {
+        scrollerInner.style.animationPlayState = 'paused';
+    });
+
+    scroller.addEventListener('mouseout', () => {
+        scrollerInner.style.animationPlayState = 'running';
+    });
+    const scrollers = document.querySelectorAll(".scroller");
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        scrollers.forEach((scroller) => {
+            const scrollerInner = scroller.querySelector(".scroller__inner");
+            const scrollerContent = Array.from(scrollerInner.children);
+
+            scrollerContent.forEach((item) => {
+                const duplicatedItem = item.cloneNode(true);
+                duplicatedItem.setAttribute("aria-hidden", true);
+                scrollerInner.appendChild(duplicatedItem);
+            });
+        });
+    }
+</script>
