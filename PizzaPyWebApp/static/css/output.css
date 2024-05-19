@@ -2270,6 +2270,10 @@ html:has(.drawer-toggle:checked) {
   max-width: 100%;
 }
 
+.max-w-4xl {
+  max-width: 56rem;
+}
+
 .flex-none {
   flex: none;
 }
@@ -3257,6 +3261,11 @@ html:has(.drawer-toggle:checked) {
     padding: 7rem;
   }
 
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -3327,6 +3336,11 @@ html:has(.drawer-toggle:checked) {
   .lg\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .lg\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
   .lg\:text-3xl {
