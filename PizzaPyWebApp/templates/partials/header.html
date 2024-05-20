@@ -1,16 +1,19 @@
-<div class="h-4 px-2 sm:px-10 navbar bg-base-100 dark:bg-gray-700 ">
-  {% include 'partials/nav-bar.html' %}
-  {%include 'partials/_logo.html'%}
+<div class="h-4 px-2 sm:px-10 navbar">
+  {% include 'partials/nav-bar.html' %} {%include 'partials/_logo.html'%}
 
   <!-- Hide on small screens, show on medium screens and up -->
   <div class="hidden sm:flex navbar-center">
     <div class="flex-none">
       <ul class="px-1 menu menu-horizontal">
-        <li><a href="{% url 'index' %}" class=" dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Home</a>
+        <li>
+          <a href="{% url 'index' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Home</a>
         </li>
-        <li><a href="{% url 'about_page' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">About
-            Us</a></li>
-        <li><a href="{% url 'events' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Events</a>
+        <li>
+          <a href="{% url 'about_page' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">About
+            Us</a>
+        </li>
+        <li>
+          <a href="{% url 'events' %}" class="dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Events</a>
         </li>
       </ul>
     </div>
@@ -18,8 +21,9 @@
 
   <div class="flex items-center space-x-4 navbar-end">
     {% include 'partials/theme-changer.html' %}
-    <button
-      class="hidden sm:flex btn btn-outline btn-info dark:border-gray-700 dark:text-gray-200 dark:hover:bg-blue-700 dark:hover:text-white">Contact
-      Us</button>
+    <button hx-get="/contact" hx-trigger="click"
+      class="flex-grow w-full px-6 py-2 text-xs text-white truncate transition duration-150 ease-in-out rounded-lg sm:text-sm md:text-base bg-base-300 sm:flex-grow-0 sm:w-auto">
+      Contact Us
+    </button>
   </div>
 </div>
