@@ -7,30 +7,9 @@ The Pizzapy User Group
 {% block content %}
 {% include 'partials/header.html' %}
 {% include 'partials/about_us/hero.html' %}
+{% include 'partials/about_us/sponsors.html' %}
 
 <div class="flex flex-col items-center w-full relative bg-[#010d1e] overflow-x-hidden">
-
-    <div class="flex flex-col items-center w-full gap-16 px-20 py-20">
-        <!-- Partner Community Logos -->
-        <div class="flex flex-col items-center gap-8">
-            <p class="text-center text-[24px] font-bold text-[#b3b8c3]">Special thanks to our partner communities</p>
-        </div>
-        <div class="flex flex-wrap justify-center px-6 gap-x-8 gap-y-16">
-            <!-- Placeholder divs for logos of partner communities -->
-            <!-- Example: <div class="w-24 h-24 bg-[url('/path/to/logo.png')] bg-cover"></div> -->
-        </div>
-
-        <div class="flex flex-col items-center gap-8">
-            <p class="text-center text-[24px] font-bold text-[#b3b8c3]">and our affiliated communities & organizations
-            </p>
-        </div>
-        <div class="flex flex-wrap justify-center px-6 gap-x-8 gap-y-16">
-            <img src="../static/images/107x40.png" class="w-[107px] h-[40px]" alt="CIB-o logo">
-            <img src="../static/images/80.png" class="w-20 h-20" alt="Python PH logo">
-            <!-- Placeholder for Philippine Tech logo -->
-        </div>
-    </div>
-
     {% include 'partials/timeline.html' %}
 
 
