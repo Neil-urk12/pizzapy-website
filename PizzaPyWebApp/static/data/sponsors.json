@@ -3,27 +3,27 @@
         {
             "name": "SmartFinder",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=SmartFinder"
+            "image": "https://via.placeholder.com/150x50.png?text=SmartFinder"
         },
         {
             "name": "Zoomerr",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=Zoomerr"
+            "image": "https://via.placeholder.com/150x50.png?text=Zoomerr"
         },
         {
             "name": "SHELLS",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=SHELLS"
+            "image": "https://via.placeholder.com/150x50.png?text=SHELLS"
         },
         {
             "name": "WAVES",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=WAVES"
+            "image": "https://via.placeholder.com/150x50.png?text=WAVES"
         },
         {
             "name": "ArtVenue",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=ArtVenue"
+            "image": "https://via.placeholder.com/150x50.png?text=ArtVenue"
         }
     ]
 }
