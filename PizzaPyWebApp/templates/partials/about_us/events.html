@@ -22,10 +22,9 @@
 <!-- Scroller Section -->
 <div class="flex flex-col items-center justify-center w-full px-4 md:px-8 lg:px-16">
     <div class="wrapper">
-        <div class="scroller scroller-left"></div>
+        <div class="scroller event-scroller-left"></div>
     </div>
 </div>
-
 
 <style>
     .wrapper {
@@ -62,26 +61,13 @@
         align-items: center;
     }
 
-    .scroller-left {
+    .event-scroller-left {
         animation: scrollLeft 30s linear infinite;
     }
 
     .scroller:hover {
         animation-play-state: paused;
     }
-
-    /* .item {
-        width: 200px;
-        height: 100px;
-        border-radius: 6px;
-        margin-right: 20px;
-        flex: 0 0 auto;
-    }
-
-    .item img {
-        height: 100%;
-        width: auto;
-    } */
 
     .item {
         width: 200px;
@@ -105,10 +91,9 @@
     }
 </style>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const scrollerLeft = document.querySelector('.scroller-left');
+        const scrollerLeft = document.querySelector('.event-scroller-left');
 
         function fetchAndPopulateEvents(url, scroller, isReverse = false) {
             console.log('Fetching events from:', url);
