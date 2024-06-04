@@ -23,5 +23,7 @@ urlpatterns = [
     path("main/", include("app.urls")),
     path("", views.index, name="index"),
     path('events/', views.event_page, name='events'),
+    path('events/<str:group_name>/', views.get_past_events, name='events'), #display past events depends on the group name e.g http://127.0.0.1:8000/events/pizzapy-ph/
+    path('events/<str:group_name>/', views.get_upcoming_events, name='events'), #display past events depends on the group name e.g http://127.0.0.1:8000/events/pizzapy-ph/
     path('about_us/', views.about_page, name='about_page'), 
 ]

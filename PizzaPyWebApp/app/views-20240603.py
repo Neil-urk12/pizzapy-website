@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 import requests
 from django.http import HttpResponse, HttpRequest
 from django.conf import settings
-from urllib.parse import urlparse
 
 
 # Create your views here.
@@ -21,35 +20,9 @@ def event_page(request):
 def about_page(request):
     return render(request, 'about_page.html')
 
-# REDIRECT_URI = 'https://pizzapy.ph/events/pizzapy-ph'
-def get_redirect_uri(request):
-    current_location = request.build_absolute_uri()
-    parsed_url = urlparse(current_location)
-    path = parsed_url.path.rstrip('/')  # Remove trailing slash if any
-    parts = path.split('/')  # Split the path by "/"
-    if len(parts) >= 3:  # Ensure that there are at least 3 parts
-        return '/'.join(parts[:3])  # Join the first three parts
-    else:
-        return None  # Unable to determine the correct URI
+REDIRECT_URI = 'https://pizzapy.ph/events/pizzapy-ph'
 
-# def get_access_token(code):
-#     token_url = 'https://secure.meetup.com/oauth2/access'
-#     payload = {
-#         'client_id': settings.OAUTH_KEY,
-#         'client_secret': settings.OAUTH_SECRET,
-#         'grant_type': 'authorization_code',
-#         'redirect_uri': REDIRECT_URI,
-#         'code': code
-#     }
-#     response = requests.post(token_url, data=payload)
-#     if response.status_code == 200:
-#         return response.json().get('access_token')
-#     else:
-#         return None
-def get_access_token(request, code):
-    REDIRECT_URI = get_redirect_uri(request)
-    if not REDIRECT_URI:
-        return None  # Unable to determine redirect URI
+def get_access_token(code):
     token_url = 'https://secure.meetup.com/oauth2/access'
     payload = {
         'client_id': settings.OAUTH_KEY,

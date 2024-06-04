@@ -12,3 +12,5 @@ migrations/
 node_modules/
 __pycache__/
 bun.lockb
+
+.env

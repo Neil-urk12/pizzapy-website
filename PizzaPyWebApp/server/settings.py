@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +53,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    'app.middleware.TokenMiddleware',
+
 ]
 
 ROOT_URLCONF = "server.urls"
@@ -128,3 +132,13 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Initialise environment variables
+env = environ.Env()
+# Reading .env file
+environ.Env.read_env(env_file='.env')
+
+# Set variables
+OAUTH_KEY = env('OAUTH_KEY')
+OAUTH_SECRET = env('OAUTH_SECRET')
