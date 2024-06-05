@@ -48,30 +48,33 @@
           const isOdd = index % 2 !== 0;
 
           const timelineItem = `
-              <div class="timeline-item relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse ${isActiveClass}">
-                <!-- Icon -->
-                <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-[#243A50] group-[.is-active]:bg-emerald-500 text-white group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2"></div>
-                <!-- Card -->
-                <div class="w-[calc(100%-4rem)] flex md:w-[calc(50%-2.5rem)] bg-[#0C1622] p-2 sm:p-4 rounded border border-[#2B3A50] shadow">
-                  <div class="flex ${isOdd ? 'lg:flex-row-reverse' : 'lg:flex-row'} flex-col w-full">
-                    <!-- Image -->
-                    <div class="relative flex justify-center w-full p-2 sm:p-4 lg:w-1/2">
-                      <div class="relative w-full h-48 overflow-hidden rounded-lg shadow-lg">
-                        <img src="${item.image}" alt="${item.title}" class="absolute inset-0 object-cover w-full h-full">
-                      </div>
-                    </div>
-                    <!-- Description -->
-                    <div class="flex flex-col justify-center w-full p-2 sm:p-4 lg:w-1/2">
-                      <div class="flex items-center justify-between mb-1 space-x-2">
-                        <div class="font-bold text-[#FEC833] text-3xl">${item.title}</div>
-                      </div>
-                      <div class="text-white">${item.description}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `;
+  <div class="timeline-item relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse ${isActiveClass}">
+    <!-- Icon -->
+    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-[#243A50] group-[.is-active]:bg-emerald-500 text-white group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2"></div>
+    <!-- Card -->
+    <div class="w-[calc(100%-4rem)] flex md:w-[calc(50%-2.5rem)] bg-[#0C1622] p-2 sm:p-4 rounded border border-[#2B3A50] shadow">
+      <div class="flex ${isOdd ? 'lg:flex-row-reverse' : 'lg:flex-row'} flex-col w-full">
+        <!-- Image -->
+        <div class="relative flex justify-center w-full p-2 sm:p-4 lg:w-1/2">
+          <div class="relative w-full h-48 overflow-hidden rounded-lg shadow-lg">
+            <img src="${item.image}" alt="${item.title}" class="absolute inset-0 object-cover w-full h-full">
+          </div>
+        </div>
+        <!-- Description -->
+        <div class="flex flex-col justify-center w-full p-2 sm:p-4 lg:w-1/2">
+          <div class="flex items-center justify-between mb-1 space-x-2">
+            <div class="font-bold text-[#FEC833] text-3xl">${item.title}</div>
+          </div>
+          <div class="text-gray-400 text-sm mb-2 pb-2">${item.date}</div> <!-- Added date subheading with padding bottom -->
+          <div class="text-white">${item.description}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
           timelineContainer.innerHTML += timelineItem;
+
+
         });
 
         // Apply animation on scroll
