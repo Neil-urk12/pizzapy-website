@@ -1,29 +1,78 @@
 {
     "sponsors": [
         {
-            "name": "SmartFinder",
+            "name": "PyTsada",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50.png?text=SmartFinder"
+            "image": "/images/sponsors/PyTsada.png"
         },
         {
-            "name": "Zoomerr",
+            "name": "The Graph Philippines",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50.png?text=Zoomerr"
+            "image": "/images/sponsors/TheGraphPhilippines.png"
         },
         {
-            "name": "SHELLS",
+            "name": "Web3 Cebu",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50.png?text=SHELLS"
+            "image": "/images/sponsors/Web3Cebu.png"
         },
         {
-            "name": "WAVES",
+            "name": "Women Techmakers Cebu",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50.png?text=WAVES"
+            "image": "/images/sponsors/WomenTechmakersCebu.png"
         },
         {
-            "name": "ArtVenue",
+            "name": "Wordpress Cebu",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50.png?text=ArtVenue"
+            "image": "/images/sponsors/WordpressCebu.png"
+        },
+        {
+            "name": "Cebu Game Dev",
+            "link": "#yourlink",
+            "image": "/images/sponsors/CebuGameDev.png"
+        }
+    ],
+    "sponsors2": [
+        {
+            "name": "DevCon",
+            "link": "#yourlink",
+            "image": "/images/sponsors/DevCon.png"
+        },
+        {
+            "name": "Game Developers Association of the Philippines",
+            "link": "#yourlink",
+            "image": "/images/sponsors/GameDevelopersAssociationofthePhilippines.png"
+        },
+        {
+            "name": "GDG Cebu",
+            "link": "#yourlink",
+            "image": "/images/sponsors/GDGCebu.png"
+        },
+        {
+            "name": "JavaScript Cebu",
+            "link": "#yourlink",
+            "image": "/images/sponsors/JavaScriptCebu.png"
+        },
+        {
+            "name": "Laravel Cebu",
+            "link": "#yourlink",
+            "image": "/images/sponsors/LaravelCebu.png"
+        }
+    ],
+    "affiliated": [
+        {
+            "name": "CIB.O",
+            "link": "#yourlink",
+            "image": "/images/sponsors/CIBO.png"
+        },
+        {
+            "name": "Python PH",
+            "link": "#yourlink",
+            "image": "/images/sponsors/PythonPH.png"
+        },
+        {
+            "name": "Philippine Tech Community",
+            "link": "#yourlink",
+            "image": "/images/sponsors/PhilippineTechCommunity.png"
         }
     ]
 }

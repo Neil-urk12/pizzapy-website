@@ -1,29 +1,24 @@
 {
     "events": [
         {
-            "name": "SmartFinder",
+            "name": "Event1",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=SmartFinder"
+            "image": "/images/events/Picture-1.png"
         },
         {
-            "name": "Zoomerr",
+            "name": "Event2",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=Zoomerr"
+            "image": "/images/events/Picture-2.png"
         },
         {
-            "name": "SHELLS",
+            "name": "Event3",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=SHELLS"
+            "image": "/images/events/Picture-3.png"
         },
         {
-            "name": "WAVES",
+            "name": "Event",
             "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=WAVES"
-        },
-        {
-            "name": "ArtVenue",
-            "link": "#yourlink",
-            "image": "https://via.placeholder.com/150x50?text=ArtVenue"
+            "image": "/images/events/Picture.png"
         }
     ]
 }

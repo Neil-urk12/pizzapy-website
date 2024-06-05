@@ -14,6 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from app import views
@@ -25,3 +28,7 @@ urlpatterns = [
     path('events/', views.event_page, name='events'),
     path('about_us/', views.about_page, name='about_page'), 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static('/images/', document_root=os.path.join(settings.BASE_DIR, 'static/images'))

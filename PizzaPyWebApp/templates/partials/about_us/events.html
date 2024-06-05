@@ -20,18 +20,18 @@
 </div>
 
 <!-- Scroller Section -->
-<div class="flex flex-col items-center justify-center w-full px-4 md:px-8 lg:px-16">
-    <div class="wrapper">
-        <div class="scroller event-scroller-left"></div>
+<div class="flex flex-col items-center justify-center w-full px-2 md:px-4 lg:px-8">
+    <div class="custom-wrapper">
+        <div class="custom-scroller custom-event-scroller-left"></div>
     </div>
 </div>
 
 <style>
-    .wrapper {
+    .custom-wrapper {
         width: 90%;
         max-width: 1536px;
         margin-inline: auto;
-        height: 100px;
+        height: 150px;
         position: relative;
         overflow: hidden;
         mask-image: linear-gradient(to right,
@@ -44,7 +44,7 @@
         margin-bottom: 2rem;
     }
 
-    @keyframes scrollLeft {
+    @keyframes custom-scrollLeft {
         0% {
             transform: translateX(0);
         }
@@ -54,56 +54,56 @@
         }
     }
 
-    .scroller {
+    .custom-scroller {
         display: flex;
         width: 200%;
-        height: 100px;
+        height: 100%;
         align-items: center;
     }
 
-    .event-scroller-left {
-        animation: scrollLeft 30s linear infinite;
+    .custom-event-scroller-left {
+        animation: custom-scrollLeft 30s linear infinite;
     }
 
-    .scroller:hover {
+    .custom-scroller:hover {
         animation-play-state: paused;
     }
 
-    .item {
-        width: 200px;
-        height: 100px;
+    .custom-item {
+        width: 300px;
+        height: 150px;
         border-radius: 6px;
         margin-right: 20px;
+        /* Increased margin for more space between images */
         flex: 0 0 auto;
-        background-color: rgba(161, 10, 10, 0.1);
-        /* Temporary background for visibility */
-        border: 1px solid red;
-        /* Temporary border for visibility */
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
     }
 
-    .item img {
+    .custom-item img {
         height: 100%;
-        width: auto;
+        width: 100%;
+        object-fit: cover;
         display: block;
     }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const scrollerLeft = document.querySelector('.event-scroller-left');
+        const scrollerLeft = document.querySelector('.custom-event-scroller-left');
 
         function fetchAndPopulateEvents(url, scroller, isReverse = false) {
             console.log('Fetching events from:', url);
             fetch(url)
                 .then(response => {
-                    console.log('Response received:', response);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Data received:', data);
                     if (data.events && data.events.length > 0) {
                         populateScroller(scroller, data.events, isReverse);
                     } else {
@@ -114,31 +114,22 @@
         }
 
         function populateScroller(scroller, events, isReverse) {
-            console.log('Populating scroller with events:', events);
             const eventsList = isReverse ? events.slice().reverse() : events;
-
             eventsList.forEach(event => {
-                console.log('Appending event:', event);
                 const item = document.createElement('a');
                 item.href = event.link;
-                item.className = 'item';
-                item.innerHTML = `<img src="${event.image}" alt="${event.name}" class="object-contain" onerror="this.onerror=null;this.src='https://via.placeholder.com/200x100?text=Image+Not+Found';">`;
+                item.className = 'custom-item';
+                item.innerHTML = `<img src="${event.image}" alt="${event.name}" class="object-cover" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x150?text=Image+Not+Found';">`;
                 scroller.appendChild(item);
-                console.log('Appended item:', item);
             });
 
-            // Clone items to ensure infinite scrolling effect
             const items = Array.from(scroller.children);
             items.forEach(item => {
                 const clone = item.cloneNode(true);
                 scroller.appendChild(clone);
-                console.log('Appended clone:', clone);
             });
-
-            console.log('Scroller populated successfully');
         }
 
-        // Initial fetch and populate
         fetchAndPopulateEvents('../../../static/data/events.json', scrollerLeft);
     });
 </script>

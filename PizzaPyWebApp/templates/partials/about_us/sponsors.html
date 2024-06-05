@@ -75,7 +75,6 @@
     .item {
         width: 200px;
         height: 100px;
-        border-radius: 6px;
         margin-right: 20px;
         flex: 0 0 auto;
     }
@@ -86,6 +85,8 @@
     }
 </style>
 
+
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const scrollerLeft = document.querySelector('.scroller-left');
@@ -94,30 +95,28 @@
 
         let cache = {};
 
-        function fetchAndPopulateSponsors(url, scroller, isReverse = false) {
+        function fetchAndPopulateSponsors(url, scroller, section, isReverse = false) {
             if (cache[url]) {
-                populateScroller(scroller, cache[url], isReverse);
+                console.log('Using cached data for:', section);
+                populateScroller(scroller, cache[url][section], isReverse);
             } else {
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
-                        cache[url] = data.sponsors;
-                        populateScroller(scroller, data.sponsors, isReverse);
+                        cache[url] = data;
+                        console.log('Fetched data for:', section, data[section]);
+                        populateScroller(scroller, data[section], isReverse);
                     })
                     .catch(error => console.error('Error fetching sponsors:', error));
             }
         }
 
-        function fetchAndPopulateSponsors(url, scroller, isReverse = false) {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    populateScroller(scroller, data.sponsors, isReverse);
-                })
-                .catch(error => console.error('Error fetching sponsors:', error));
-        }
-
         function populateScroller(scroller, sponsors, isReverse) {
+            if (!sponsors) {
+                console.error('No sponsors data found for scroller:', scroller);
+                return;
+            }
+
             const sponsorsList = isReverse ? sponsors.slice().reverse() : sponsors;
 
             const fragment = document.createDocumentFragment();
@@ -141,22 +140,25 @@
             });
         }
 
-        const scrollers = {
-            'scroller-left': document.querySelector('.scroller-left'),
-            'scroller-right': document.querySelector('.scroller-right'),
-            'scroller-bottom': document.querySelector('.scroller-bottom')
-        };
-
-        const fetchUrls = {
-            'scroller-left': '../../../static/data/sponsors.json',
-            'scroller-right': '../../../static/data/sponsors.json',
-            'scroller-bottom': '../../../static/data/sponsors.json'
-        };
-
-        const reverseMap = {
-            'scroller-left': false,
-            'scroller-right': true,
-            'scroller-bottom': false
+        const scrollersConfig = {
+            'scroller-left': {
+                element: scrollerLeft,
+                url: '../../../static/data/sponsors.json',
+                section: 'sponsors',
+                reverse: false
+            },
+            'scroller-right': {
+                element: scrollerRight,
+                url: '../../../static/data/sponsors.json',
+                section: 'sponsors2',
+                reverse: true
+            },
+            'scroller-bottom': {
+                element: scrollerBottom,
+                url: '../../../static/data/sponsors.json',
+                section: 'affiliated',
+                reverse: false
+            }
         };
 
         const observerOptions = {
@@ -168,15 +170,16 @@
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const scrollerClass = Object.keys(scrollers).find(className => entry.target.classList.contains(className));
-                    if (scrollerClass) {
-                        fetchAndPopulateSponsors(fetchUrls[scrollerClass], scrollers[scrollerClass], reverseMap[scrollerClass]);
+                    const scrollerConfig = scrollersConfig[entry.target.classList[1]];
+                    if (scrollerConfig) {
+                        fetchAndPopulateSponsors(scrollerConfig.url, scrollerConfig.element, scrollerConfig.section, scrollerConfig.reverse);
                         observer.unobserve(entry.target);
                     }
                 }
             });
         }, observerOptions);
 
-        Object.values(scrollers).forEach(scroller => observer.observe(scroller));
+        Object.values(scrollersConfig).forEach(config => observer.observe(config.element));
     });
+
 </script>
