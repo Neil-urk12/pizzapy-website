@@ -2258,6 +2258,10 @@ html:has(.drawer-toggle:checked) {
   width: 100vw;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .max-w-full {
   max-width: 100%;
 }
