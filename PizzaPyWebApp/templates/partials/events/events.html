@@ -4,7 +4,8 @@
         <a href="https://www.meetup.com" class="text-yellow-400 hover:underline">See all on Meetup &rarr;</a>
     </div>
 
-    <div class="grid gap-4 overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4" id="event-cards">
+    <div class="grid gap-4 overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
+        id="event-cards">
         <!-- Event cards will be dynamically inserted here -->
     </div>
 </div>
@@ -51,6 +52,7 @@
                 const eventCard = document.createElement('a');
                 eventCard.href = event.link;
                 eventCard.className = 'bg-white text-black rounded-lg shadow-md w-full sm:w-auto no-underline hover:no-underline transform hover:shadow-lg hover:-translate-y-1 transition-transform duration-200';
+                eventCard.target = '_blank'; // Open link in a new tab
                 eventCard.innerHTML = `
                     <div class="relative h-40">
                         <img src="${event.image}" alt="Event Image" class="object-cover w-full h-full rounded-t-lg">
