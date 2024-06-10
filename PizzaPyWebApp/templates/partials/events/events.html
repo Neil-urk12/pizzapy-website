@@ -1,11 +1,11 @@
 <div class="container px-4 py-12 mx-auto sm:px-8 lg:px-16">
     <div class="flex items-center justify-between mb-8">
         <h1 class="text-4xl font-bold">Upcoming Events</h1>
-        <a href="https://www.meetup.com" class="text-yellow-400 hover:underline">See all on Meetup &rarr;</a>
+        <a href="https://www.meetup.com/pizzapy-ph/events/" target="_blank" class="text-yellow-400 hover:underline">See
+            all on Meetup &rarr;</a>
     </div>
 
-    <div class="grid gap-4 overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
-        id="event-cards">
+    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3" id="event-cards">
         <!-- Event cards will be dynamically inserted here -->
     </div>
 </div>
@@ -48,10 +48,10 @@
             const events = await response.json();
             const eventCardsContainer = document.getElementById('event-cards');
 
-            events.slice(0, 4).forEach(event => {
+            events.slice(0, 3).forEach(event => {
                 const eventCard = document.createElement('a');
                 eventCard.href = event.link;
-                eventCard.className = 'bg-white text-black rounded-lg shadow-md w-full sm:w-auto no-underline hover:no-underline transform hover:shadow-lg hover:-translate-y-1 transition-transform duration-200';
+                eventCard.className = 'bg-white text-black rounded-lg shadow-md w-full no-underline hover:no-underline transform hover:shadow-lg hover:-translate-y-1 transition-transform duration-200';
                 eventCard.target = '_blank'; // Open link in a new tab
                 eventCard.innerHTML = `
                     <div class="relative h-40">
