@@ -42,12 +42,15 @@
             </div>
             <div>
                 <div class="relative w-full">
-                    <img id="event-image" src="" alt="Event Image" class="object-cover w-full h-full rounded-b-lg">
+                    <img id="event-image" src="https://via.placeholder.com/748x498.png?text=Loading..."
+                        alt="Event Image"
+                        class="object-cover w-full h-full rounded-b-lg transition-opacity duration-500 opacity-0">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     // JSON data
@@ -70,7 +73,14 @@
 
     function updateEventContent() {
         document.getElementById('address-input').value = data[currentImageIndex].address;
-        document.getElementById('event-image').src = data[currentImageIndex].imageUrl;
+        const eventImage = document.getElementById('event-image');
+        eventImage.src = data[currentImageIndex].imageUrl;
+        eventImage.classList.remove('opacity-100');
+        eventImage.classList.add('opacity-0');
+        eventImage.onload = () => {
+            eventImage.classList.remove('opacity-0');
+            eventImage.classList.add('opacity-100');
+        };
     }
 
     document.getElementById('prev-arrow').addEventListener('click', () => {
@@ -96,3 +106,17 @@
     // Initialize the first content
     updateEventContent();
 </script>
+
+<style>
+    .opacity-0 {
+        opacity: 0;
+    }
+
+    .opacity-100 {
+        opacity: 1;
+    }
+
+    .transition-opacity {
+        transition: opacity 0.5s;
+    }
+</style>
