@@ -3145,10 +3145,6 @@ html:has(.drawer-toggle:checked) {
   line-height: 1rem;
 }
 
-.text-\[24px\] {
-  font-size: 24px;
-}
-
 .font-bold {
   font-weight: 700;
 }
@@ -3444,6 +3440,11 @@ html:has(.drawer-toggle:checked) {
   color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity)));
 }
 
+.hover\:text-yellow-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(202 138 4 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -3541,6 +3542,16 @@ html:has(.drawer-toggle:checked) {
 .dark\:hover\:text-blue-400:hover:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
+.dark\:hover\:text-yellow-400:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(250 204 21 / var(--tw-text-opacity));
+}
+
+.dark\:hover\:text-yellow-600:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(202 138 4 / var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {
@@ -3666,10 +3677,6 @@ html:has(.drawer-toggle:checked) {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
-
-  .sm\:text-\[30px\] {
-    font-size: 30px;
-  }
 }
 
 @media (min-width: 768px) {
@@ -3778,10 +3785,6 @@ html:has(.drawer-toggle:checked) {
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-\[36px\] {
-    font-size: 36px;
   }
 
   .md\:before\:mx-auto::before {
@@ -3927,10 +3930,6 @@ html:has(.drawer-toggle:checked) {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
-
-  .lg\:text-\[48px\] {
-    font-size: 48px;
-  }
 }
 
 @media (min-width: 1280px) {
@@ -3946,13 +3945,5 @@ html:has(.drawer-toggle:checked) {
   .xl\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
-  }
-
-  .xl\:text-\[60px\] {
-    font-size: 60px;
-  }
-
-  .xl\:text-\[72px\] {
-    font-size: 72px;
   }
 }
