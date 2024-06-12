@@ -26,8 +26,15 @@ urlpatterns = [
     path("main/", include("app.urls")),
     path("", views.index, name="index"),
     path('events/', views.event_page, name='events'),
-    path('events/<str:group_name>/', views.get_past_events, name='events'), #display past events depends on the group name e.g http://127.0.0.1:8000/events/pizzapy-ph/
-    path('events/<str:group_name>/', views.get_upcoming_events, name='events'), #display past events depends on the group name e.g http://127.0.0.1:8000/events/pizzapy-ph/
+    #events
+    #event_timeline = upcoming-events OR past-events
+    path('events/<str:event_timeline>/', views.event_dispatcher, name='events'),
+    #for jacob's events 
+    #group_name = meetup group name e.g. pizzapy-ph
+    #events/upcoming-events/cebu-city-cybersecurity-center-c4
+    path('events/<str:event_timeline>/<str:group_name>/', views.event_dispatcher, name='events'), 
+    path('attend_event/<int:event_id>/', views.attend_event, name='attend_event'),
+    path('join_group/<int:event_id>/', views.join_group, name='join_group'),
     path('about_us/', views.about_page, name='about_page'), 
 ]
 
