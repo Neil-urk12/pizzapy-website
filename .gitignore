@@ -3,6 +3,7 @@ PizzaPyWebApp/js_lib/node_modules
 PizzaPyWebApp/backend/__pycache__
 PizzaPyWebApp/backend/migrations
 PizzaPyWebApp/frontend/__pycache__
+PizzaPyWebApp/.env
 # .gitignore content
 __pycache__/
 migrations/
