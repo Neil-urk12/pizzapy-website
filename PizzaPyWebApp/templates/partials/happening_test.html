@@ -4,6 +4,7 @@
     <div class="font-bold text-white text-[72px] text-center">What’s happening now?</div>
     <div class="font-bold text-[#ffba33] text-[72px] text-center">an event near you.</div>
 </div>
+{% if event %}
 <div class="mockup-window border border-gray-800 flex flex-col items-center justify-center w-full bg-[#1f2937] rounded-[16px] overflow-hidden">
     <div class="flex justify-between items-center w-full py-[8px] px-[16px]">
         <div class="flex items-center gap-[5px]">
@@ -19,32 +20,16 @@
             <img class="w-[24px] h-[24px]" src="img/chevron-right.svg" />
         </div>
     </div>
-    <img class="w-[1253px] h-[741.67px] object-cover" src="img/image-2.png" />
+    <img class="w-[1253px] h-[741.67px] object-cover" src="{{ event.images.0.source }}" />
 </div>
-
-{% if event %}
 <div class="event">
     <h2>{{ event.title }}</h2>
-    <p>{{ event.description }}</p>
     <p>{{ event.venue.address }}, {{ event.venue.city }}, {{ event.venue.postalCode }}</p>
     <p>Starts at: {{ event.dateTime }}</p>
     <p>Ends at: {{ event.endTime }}</p>
     <p>Host: {{ event.host.name }} ({{ event.host.email }})</p>
-    <a href="{{ event.shortUrl }}" target="_blank">Event Link</a>
-    {% if event.isAttending %}
-        <p>You are attending this event</p>
-    {% elif event.rsvpState != 'RSVP' %}
-        <form method="post" action="{% url 'join_group' event.id %}">
-            {% csrf_token %}
-            <button type="submit">Join Group</button>
-        </form>
-    {% else %}
-        <form method="post" action="{% url 'attend_event' event.id %}">
-            {% csrf_token %}
-            <button type="submit">Attend</button>
-        </form>
-    {% endif %}
+
+    <a href="{{ event.shortUrl }}" target="_blank">Attend</a>
 </div>
-{% else %}
-<p>No upcoming events found.</p>
+
 {% endif %}

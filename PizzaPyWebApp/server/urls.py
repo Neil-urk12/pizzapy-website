@@ -34,7 +34,6 @@ urlpatterns = [
     #events/upcoming-events/cebu-city-cybersecurity-center-c4
     path('events/<str:event_timeline>/<str:group_name>/', views.event_dispatcher, name='events'), 
     path('attend_event/<int:event_id>/', views.attend_event, name='attend_event'),
-    path('join_group/<int:event_id>/', views.join_group, name='join_group'),
     path('about_us/', views.about_page, name='about_page'), 
 ]
 
