@@ -4,6 +4,7 @@ PizzaPyWebApp/backend/__pycache__
 PizzaPyWebApp/backend/migrations
 PizzaPyWebApp/frontend/__pycache__
 PizzaPyWebApp/.env
+PizzaPyWebApp/static/css/output.css
 # .gitignore content
 __pycache__/
 migrations/
@@ -11,5 +12,6 @@ migrations/
 .history
 
 node_modules/
+
 __pycache__/
 bun.lockb
