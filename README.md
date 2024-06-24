@@ -15,8 +15,8 @@ Python dependencies:
 
 ```bash
 python -m venv venv         # creates a Virtual Environment inside the /venv directory
-./venv/Scripts/activate     # activates the venv, to exit, type "deactivate"
-pip install -r requirements # installs all the Python dependencies
+./venv/Scripts/activate     # activates the venv, to exit, type "deactivate" || for MAC: source venv/bin/activate
+pip install -r requirements.txt # installs all the Python dependencies
 ```
 
 JavaScript dependencies:
