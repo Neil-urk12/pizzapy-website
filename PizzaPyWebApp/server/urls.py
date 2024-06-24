@@ -27,7 +27,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('events/', views.event_page, name='events'),
     #events
-    #event_timeline = upcoming-events OR past-events
+    #event_timeline = upcoming-events
     path('events/<str:event_timeline>/', views.event_dispatcher, name='events'),
     #for jacob's events 
     #group_name = meetup group name e.g. pizzapy-ph

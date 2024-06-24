@@ -15,10 +15,10 @@
             <!-- Loop through other_events and render each event card -->
             {% for event in events %}
             <div class="flex-shrink-0 w-full md:min-w-[280px] lg:min-w-[320px] overflow-hidden bg-white rounded-lg shadow-lg">
-                <img class="object-cover w-full h-32" src="{{ event.images.0.baseUrl }}" alt="Event Image">
+                <img class="object-cover w-full h-32" src="{{ event.images.0.source }}" alt="Event Image">
                 <div class="p-4">
                     <div class="flex items-center space-x-4">
-                        <img class="w-10 h-10 rounded-full" src="{{ event.host.memberPhoto.0.baseUrl }}" alt="Host Avatar">
+                        <img class="w-10 h-10 rounded-full" src="{{ event.host.memberPhoto.0.source }}" alt="Host Avatar">
                         <div>
                             <p class="font-semibold text-gray-900 truncate">{{ event.title }}</p>
                             <p class="text-sm text-gray-600">Hosted by {{ event.host.name }}</p>
