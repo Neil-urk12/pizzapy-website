@@ -3769,6 +3769,11 @@ html:has(.drawer-toggle:checked) {
     padding-right: 1rem;
   }
 
+  .sm\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
   .sm\:text-left {
     text-align: left;
   }
