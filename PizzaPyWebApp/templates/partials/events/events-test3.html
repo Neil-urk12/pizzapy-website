@@ -1,15 +1,13 @@
-<div class="container px-4 py-12 mx-auto sm:px-8 lg:px-16">
-    <div class="flex items-center justify-between mb-8">
-        <h1 class="text-4xl font-bold">Upcoming Events</h1>
-        <a href="https://www.meetup.com/pizzapy-ph/events/" target="_blank" class="text-yellow-400 hover:underline">See
-            all on Meetup &rarr;</a>
+<div class="container mx-auto px-4 sm:px-8 lg:px-16 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 space-y-4 sm:space-y-0">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center sm:text-left">Upcoming Events</h1>
+        <a href="https://www.meetup.com/pizzapy-ph/events/" target="_blank"
+            class="text-yellow-400 hover:underline text-center sm:text-right">See all on Meetup &rarr;</a>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 min-h-[200px] flex items-center justify-center"
-        id="event-cards">
+    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 min-h-[200px]" id="event-cards">
         {% if error_message %}
         <div class="col-span-3 text-center">
-            <!-- <p class="text-red-600 text-2xl font-bold">{{ error_message }}</p> -->
             <p class="text-gray-600 text-2xl font-bold">{{ error_message }}</p>
         </div>
         {% elif not other_events %}
@@ -20,7 +18,7 @@
         <!-- Loop through other_events to generate event cards -->
         {% for event in other_events %}
         <a href="{{ event.shortUrl }}"
-            class="bg-white text-black rounded-lg shadow-md w-full no-underline hover:no-underline transform hover:shadow-lg hover:-translate-y-1 transition-transform duration-200"
+            class="bg-white text-black rounded-lg shadow-md w-full no-underline hover:no-underline transform hover:shadow-lg hover:-translate-y-1 transition-transform duration-200 overflow-hidden"
             target="_blank">
             <div class="relative h-40">
                 <img src="{{ event.images.0.source }}" alt="{{ event.title }}"
