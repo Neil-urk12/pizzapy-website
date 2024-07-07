@@ -10,9 +10,7 @@
         </h1>
     </div>
 
-
-
-
+    <!-- Render upcoming events or placeholder -->
     <div class="flex justify-center w-full py-10">
         <div class="w-11/12 max-w-screen-lg bg-white border border-gray-300 rounded-lg shadow-lg">
             <div class="flex items-center px-4 py-2 bg-gray-900 rounded-t-lg">
@@ -25,7 +23,7 @@
                     <div class="flex justify-center">
                         <input id="address-input" type="text"
                             class="w-full max-w-xs px-3 py-1 text-center text-gray-200 bg-gray-700 rounded-md md:max-w-md lg:max-w-lg"
-                            value="" readonly>
+                            value="{{ first_event.title }}" readonly>
                     </div>
                 </div>
                 <div class="flex justify-end space-x-2">
@@ -45,53 +43,52 @@
                     </svg>
                 </div>
             </div>
-            <div>
-                <div class="relative w-full">
-                    <a id="event-link" href="#" target="_blank">
-                        <img id="event-image" src="https://via.placeholder.com/748x498.png?text=Loading..."
-                            alt="Event Image"
-                            class="object-cover w-full h-full rounded-b-lg transition-opacity duration-500 opacity-0">
-                    </a>
-                </div>
+            <div class="relative w-full">
+                <a id="event-link" href="{{ first_event.shortUrl }}" target="_blank">
+                    <img id="event-image" src="{{ first_event.images.0.source }}" alt="{{ first_event.title }}"
+                        class="object-cover w-full h-full rounded-b-lg transition-opacity duration-500 opacity-100">
+                </a>
             </div>
         </div>
     </div>
 </div>
 
-
 <script>
-    // JSON data
-    const data = [
-        {
-            address: "meetup.com/event1",
-            imageUrl: "https://via.placeholder.com/748x498.png?text=Image+1",
-            link: "https://meetup.com/event1"
-        },
-        {
-            address: "meetup.com/event2",
-            imageUrl: "https://via.placeholder.com/748x498.png?text=Image+2",
-            link: "https://meetup.com/event2"
-        },
-        {
-            address: "meetup.com/event3",
-            imageUrl: "https://via.placeholder.com/748x498.png?text=Image+3",
-            link: "https://meetup.com/event3"
-        }
-    ];
+    // Data passed from Django
+    const data = JSON.parse('{{ events_json|escapejs }}');
+    console.log('Loaded data:', data);
 
     let currentImageIndex = 0;
 
     function updateEventContent() {
-        document.getElementById('address-input').value = data[currentImageIndex].address;
+        const addressInput = document.getElementById('address-input');
         const eventImage = document.getElementById('event-image');
-        eventImage.src = data[currentImageIndex].imageUrl;
-        eventImage.classList.remove('opacity-100');
-        eventImage.classList.add('opacity-0');
-        eventImage.onload = () => {
+        const eventLink = document.getElementById('event-link');
+
+        if (data.length > 0) {
+            addressInput.value = data[currentImageIndex].title;
+            eventImage.src = data[currentImageIndex].images[0].source;
             eventImage.classList.remove('opacity-0');
             eventImage.classList.add('opacity-100');
-        };
-        document.getElementById('event-link').href = data[currentImageIndex].link;
+            eventLink.href = data[currentImageIndex].shortUrl;
+            console.log('Event updated to:', data[currentImageIndex]);
+        } else if ('{{ error_message }}' !== '') {
+            // Use an error placeholder image if there is an error
+            addressInput.value = "Error loading events";
+            eventImage.src = 'https://via.placeholder.com/748x498.png?text=Error+Loading+Events';
+            eventImage.classList.remove('opacity-0');
+            eventImage.classList.add('opacity-100');
+            eventLink.href = "#";
+            console.log('Error loading events');
+        } else {
+            // Use a placeholder image if no events are available
+            addressInput.value = "No upcoming events";
+            eventImage.src = 'https://via.placeholder.com/748x498.png?text=No+Upcoming+Events';
+            eventImage.classList.remove('opacity-0');
+            eventImage.classList.add('opacity-100');
+            eventLink.href = "#";
+            console.log('No upcoming events');
+        }
     }
 
     document.getElementById('prev-arrow').addEventListener('click', () => {
@@ -117,17 +114,3 @@
     // Initialize the first content
     updateEventContent();
 </script>
-
-<style>
-    .opacity-0 {
-        opacity: 0;
-    }
-
-    .opacity-100 {
-        opacity: 1;
-    }
-
-    .transition-opacity {
-        transition: opacity 0.5s;
-    }
-</style>
