@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-The Pizzapy User Group
+PizzaPy Cebu Python Users Group
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@ The Pizzapy User Group
     <!-- <img class="absolute w-[924px] h-[985px] top-[11px] left-[593px] object-cover" src="img/python-3d-image.png" /> -->
     <div class="flex flex-col items-start justify-center gap-[80px] w-full px-[80px] py-[80px] pb-[120px]">
         {% include 'partials/happening_test.html' with event=first_event %}
-        {% include 'partials/upcoming-events-test.html' with events=other_events %}    </div>
+        {% include 'partials/upcoming-events-test.html' with events=other_events %} </div>
 </div>
 
 {% endblock %}
