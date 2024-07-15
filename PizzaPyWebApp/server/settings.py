@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_htmx",
     "django_browser_reload",  # Allows live reloading during development
+    "app",
 ]
 
 MIDDLEWARE = [

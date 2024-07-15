@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 #for Meetup
 import requests
-from django.http import HttpResponse, HttpRequest, HttpResponseNotFound, HttpResponseRedirect
+from .models import MeetupEvent, events_list  # Importing the in-memory list
+from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from django.conf import settings
 from urllib.parse import urlparse
@@ -79,6 +80,7 @@ def extract_events(data, event_timeline):
 def get_upcoming_events(request, group_name=None):
     if not group_name:
         group_name = "pizzapy-ph"
+
     upcoming_events_query = """
     query ($urlname: String!) {
         groupByUrlname(urlname: $urlname) {
@@ -95,7 +97,7 @@ def get_upcoming_events(request, group_name=None):
                         description
                         eventType
                         images {
-                                source
+                            source
                         }
                         venue {
                             address
@@ -127,7 +129,8 @@ def get_upcoming_events(request, group_name=None):
         }
     }
     """
-    token = request.token
+
+    token = request.token  # Ensure you have the token obtained somehow
     if not token:
         return HttpResponse("Failed to retrieve access token", status=400)
     
@@ -136,16 +139,54 @@ def get_upcoming_events(request, group_name=None):
     
     if data:
         events = extract_events(data, "upcomingEvents")
-        # print(events) 
         if events:
-            first_event = events[0]["node"]
-            other_events = [event["node"] for event in events[1:]]
-            return render(request, 'event_page_test2.html', {'first_event': first_event, 'other_events': other_events})
+            # Clear existing events in the in-memory list
+            events_list.clear()
+
+            # Populate events_list with MeetupEvent objects
+            for event in events:
+                meetup_event = MeetupEvent(
+                    meetup_id=event['node']['id'],
+                    title=event['node']['title'],
+                    description=event['node']['description'],
+                    event_type=event['node']['eventType'],
+                    images_source=event['node']['images'][0]['source'] if event['node']['images'] else '',
+                    venue_address=event['node']['venue']['address'],
+                    venue_city=event['node']['venue']['city'],
+                    venue_postal_code=event['node']['venue']['postalCode'],
+                    created_at=event['node']['createdAt'],
+                    date_time=event['node']['dateTime'],
+                    end_time=event['node']['endTime'],
+                    timezone=event['node']['timezone'],
+                    going=event['node']['going'],
+                    short_url=event['node']['shortUrl'],
+                    host_name=event['node']['host']['name'],
+                    host_username=event['node']['host']['username'],
+                    host_email=event['node']['host']['email'],
+                    host_member_photo=event['node']['host']['memberPhoto']['source'] if event['node']['host'].get('memberPhoto') else '',
+                    host_member_url=event['node']['host']['memberUrl'],
+                    organized_group_count=event['node']['host']['organizedGroupCount'],
+                )
+                events_list.append(meetup_event)
+
+            # Render the template with events_list
+            return render(request, 'event_page_test2.html', {'events': events_list}) #@front-end dev, change the filename here
         else:
             return HttpResponse("No upcoming events found", status=404)
     else:
         return HttpResponse("Failed to retrieve events", status=400)
 
+def fetch_events(query, token, variables):
+    url = 'https://api.meetup.com/gql'
+    headers = {"Authorization": "Bearer " + token}
+    response = requests.post(url, json={"query": query, "variables": variables}, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def extract_events(data, event_timeline):
+    return data.get("data", {}).get("groupByUrlname", {}).get(event_timeline, {}).get("edges", [])
 
 def event_dispatcher(request, event_timeline, group_name=None):
     if event_timeline == 'past-events':

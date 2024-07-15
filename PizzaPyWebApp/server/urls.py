@@ -28,12 +28,11 @@ urlpatterns = [
     path('events/', views.event_page, name='events'),
     #events
     #event_timeline = upcoming-events
-    path('events/<str:event_timeline>/', views.event_dispatcher, name='events'),
+    path('events/upcoming-events/', views.get_upcoming_events, name='get_upcoming_events'),
     #for jacob's events 
     #group_name = meetup group name e.g. pizzapy-ph
     #events/upcoming-events/cebu-city-cybersecurity-center-c4
-    path('events/<str:event_timeline>/<str:group_name>/', views.event_dispatcher, name='events'), 
-    path('attend_event/<int:event_id>/', views.attend_event, name='attend_event'),
+    path('events/upcoming-events/<str:group_name>/', views.get_upcoming_events, name='get_upcoming_events'),
     path('about_us/', views.about_page, name='about_page'), 
 ]
 
