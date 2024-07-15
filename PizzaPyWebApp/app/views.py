@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 #for Meetup
 import requests
 from .models import MeetupEvent, events_list  # Importing the in-memory list
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from urllib.parse import urlparse
@@ -76,6 +76,105 @@ def fetch_events(query, token, variables):
 def extract_events(data, event_timeline):
     return data.get("data", {}).get("groupByUrlname", {}).get(event_timeline, {}).get("edges", [])
 
+
+# def get_upcoming_events(request, group_name=None):
+#     if not group_name:
+#         group_name = "pizzapy-ph"
+
+#     upcoming_events_query = """
+#     query ($urlname: String!) {
+#         groupByUrlname(urlname: $urlname) {
+#             id,
+#             upcomingEvents(input: { first: 3 }, sortOrder: ASC){
+#                 count,
+#                 pageInfo {
+#                     endCursor
+#                 },
+#                 edges {
+#                     node {
+#                         id
+#                         title
+#                         description
+#                         eventType
+#                         images {
+#                             source
+#                         }
+#                         venue {
+#                             address
+#                             city
+#                             postalCode
+#                         }
+#                         createdAt
+#                         dateTime
+#                         endTime
+#                         timezone
+#                         going
+#                         shortUrl
+#                         host {
+#                             name
+#                             username
+#                             email
+#                             memberPhoto {
+#                                 id
+#                                 baseUrl
+#                                 preview
+#                                 source
+#                             }
+#                             memberUrl
+#                             organizedGroupCount
+#                         }
+#                     }
+#                 }
+#             }
+#         }
+#     }
+#     """
+
+#     token = request.token  # Ensure you have the token obtained somehow
+#     if not token:
+#         return HttpResponse("Failed to retrieve access token", status=400)
+    
+#     variables = {"urlname": group_name}
+#     data = fetch_events(upcoming_events_query, token, variables)
+    
+#     if data:
+#         events = extract_events(data, "upcomingEvents")
+#         if events:
+#             # Clear existing events in the in-memory list
+#             events_list.clear()
+
+#             # Populate events_list with MeetupEvent objects
+#             for event in events:
+#                 meetup_event = MeetupEvent(
+#                     meetup_id=event['node']['id'],
+#                     title=event['node']['title'],
+#                     description=event['node']['description'],
+#                     event_type=event['node']['eventType'],
+#                     images_source=event['node']['images'][0]['source'] if event['node']['images'] else '',
+#                     venue_address=event['node']['venue']['address'],
+#                     venue_city=event['node']['venue']['city'],
+#                     venue_postal_code=event['node']['venue']['postalCode'],
+#                     created_at=event['node']['createdAt'],
+#                     date_time=event['node']['dateTime'],
+#                     end_time=event['node']['endTime'],
+#                     timezone=event['node']['timezone'],
+#                     going=event['node']['going'],
+#                     short_url=event['node']['shortUrl'],
+#                     host_name=event['node']['host']['name'],
+#                     host_username=event['node']['host']['username'],
+#                     host_email=event['node']['host']['email'],
+#                     host_member_photo=event['node']['host']['memberPhoto']['source'] if event['node']['host'].get('memberPhoto') else '',
+#                     host_member_url=event['node']['host']['memberUrl'],
+#                     organized_group_count=event['node']['host']['organizedGroupCount'],
+#                 )
+#                 events_list.append(meetup_event)
+
+#             # Render the template with events_list
+#             return render(request, 'event_page_test2.html', {'events': events_list}) #@front-end dev, change the filename here
+#         else:
+#             return HttpResponse("No upcoming events found", status=404)
+#     else:
+#         return HttpResponse("Failed to retrieve events", status=400)
 
 def get_upcoming_events(request, group_name=None):
     if not group_name:
@@ -176,6 +275,7 @@ def get_upcoming_events(request, group_name=None):
     else:
         return HttpResponse("Failed to retrieve events", status=400)
 
+
 def fetch_events(query, token, variables):
     url = 'https://api.meetup.com/gql'
     headers = {"Authorization": "Bearer " + token}
@@ -203,3 +303,11 @@ def attend_event(request, event_id):
         return HttpResponseRedirect(reverse('get_upcoming_events', args=[group_name]))
     else:
         return HttpResponse(status=405) 
+    
+def meetup_webhook(request):
+    if request.method == 'POST':
+        payload = request.POST 
+        update_events_from_payload(payload) 
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
