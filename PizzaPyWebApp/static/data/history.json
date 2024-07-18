@@ -2,67 +2,67 @@
     {
         "title": "Cebu GNU Linux Users’ Group (CeGNULUG)",
         "date": "Dec 1999",
-        "description": "Cebu GNU Linux Users’ Group (CeGNULUG) was established by John Clark “Little John” Nadoza, being one of the first tech communities in Cebu. They started out as Mailing Lists.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/Cebu%20GNU%20Linux%20Users%E2%80%99%20Group%20(CeGNULUG)"
+        "description": "Cebu GNU Linux Users’ Group (CeGNULUG) was established by John Clark “Little John” Naldoza, being one of the first tech communities in Cebu. They started out as Mailing Lists via eGroups.",
+        "image": "/images/history/CeGNULUG_2011.jpg"
     },
     {
         "title": "PizzaPy Cebu Python Users Group",
         "date": "Oct 2013",
-        "description": "PizzaPy Cebu Python Users Group was founded by Daryl Yu and Marconi Moreto. First meetup was held at Handuraw Pizza – Gorordo Ave. Branch. It started as a monthly meetup to discuss about emerging technologies, other than Python.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/PizzaPy%20Cebu%20Python%20Users%20Group"
+        "description": "PizzaPy Cebu Python Users Group was founded by Daryl Yu and Marconi Moreto. First meetup was held at Handuraw Pizza - Gorordo Ave. Branch. It started as a monthly meetup to discuss Python and other emerging technologies.",
+        "image": "/images/history/Handuraw_Gorordo.jpg"
     },
     {
         "title": "PizzaPy and PyCon Philippines 2016",
         "date": "Feb 2016",
         "description": "PizzaPy helped out Python Philippines to organize PyCon Philippines 2016 in Cebu, at the University of the Philippines Cebu Performing Arts Hall.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/PizzaPy%20and%20PyCon%20Philippines%202016"
+        "image": "/images/history/PyCon_PH_2016.png"
     },
     {
         "title": "2nd Generation Lead Organizers",
         "date": "Dec 2018",
-        "description": "Neriah “BJ” Alto, Cleo Credo, Jammar Londino, and Cristopher Cutas took over as the 2nd Generation Lead Organizers of PizzaPy.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/2nd%20Generation%20Lead%20Organizers"
+        "description": "Neriah “BJ” Ato, Cleo Credo, Jommar Lodonia, and Cristopher Cutas took over as the 2nd Generation Lead Organizers of PizzaPy.",
+        "image": "/images/history/Second_Generation.jpg"
     },
     {
         "title": "PizzaPy Reborn",
         "date": "Nov 2018",
-        "description": "PizzaPy is revived again with Ron Michael Kho’s initiative. Meetups were supported by the newly opened Co-Working Space, The Company at JDN Square. They eventually opened a branch in IT Park.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/PizzaPy%20Reborn"
+        "description": "PizzaPy is revived again with Ron Michael Khu's initiative. Meetups were supported by the newly opened Co-Working Space, The Company Cebu at JDN Square, Mandaue. They eventually opened a branch in IT Park.",
+        "image": "/images/history/The_Company_Cebu_Mandaue.jpg"
     },
     {
-        "title": "UP Cebu STITCH & Arduino Day Cebu",
+        "title": "Arduino Day Cebu 2019",
         "date": "Mar 2019",
-        "description": "PizzaPy Cebu, UP Cebu STITCH, and the Cebu Innovation Network launched Arduino Day Cebu 2019, the first National Arduino Programming Competition. This was held at Fablab UP Cebu.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/UP%20Cebu%20STITCH%20&%20Arduino%20Day%20Cebu"
+        "description": "Fablab UP Cebu, PizzaPy, UP Cebu STITCH, IoT Cebu, and the Cebu Innovation Network launched Arduino Day Cebu 2019, the first National Arduino Programming Competition. This was held at Fablab UP Cebu.",
+        "image": "/images/history/Arduino_Day_Cebu_2019.jpg"
     },
     {
         "title": "PizzaPy Online Meetups",
         "date": "Mar 2020",
-        "description": "Cebu was quarantined due to the COVID-19 pandemic. All PizzaPy Meetups were held online from this point. We used Zoom and Google Meet for the first few meetups, but discovered GatherTown afterwards on February, 2021.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/PizzaPy%20Online%20Meetups"
+        "description": "Cebu was quarantined due to the COVID-19 pandemic. All PizzaPy Meetups were held online from this point. We used Zoom and Google Meet for the first few meetups, but used Gather.Town and hosted the meetups on that platform from February 2021 onwards.",
+        "image": "/images/history/Gather_Town.png"
     },
     {
         "title": "First AI Ethics Conversation",
         "date": "April 2023",
-        "description": "Together with the government, and local companies, we organized the first AI Ethics conversation in Cebu. This meetup inspired the creation of The Ambit, an org that promotes and empowers participation in Ethical AI Governance.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/First%20AI%20Ethics%20Conversation"
+        "description": "PizzaPy, along with DTI Region VII, DOHE Philippines, From Here Coworking Space, LegalMatch Philippines, Automaton Systems, and KISK, organized the first AI Ethics conversation in Cebu. This was a roundtable discussion between an AI Ethicist, a University Professor (UP Cebu), an Industry Practitioner (DTN), and a Government Agency (DICT). This meetup inspired the creation of The Ambit, an org that promotes and empowers participation of Majority World Countries in Ethical AI Governance.",
+        "image": "/images/history/Ethics_of_AI_2023.jpeg"
     },
     {
         "title": "PizzaPy Book Club Series",
         "date": "Jan 2024",
         "description": "PizzaPy brings in Jacob Michael Silva as the Co-Lead Organizer. He also spearheads the PizzaPy Book Club Series, where we read a technical book every month, depending on the theme for the quarter.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/PizzaPy%20Book%20Club%20Series"
+        "image": "/images/history/BookClub.webp"
     },
     {
         "title": "Cebu Hacktoberfest",
         "date": "Oct 2020",
-        "description": "During the 7th anniversary of PizzaPy, we participated in the first Cebu Hacktoberfest. The event was spearheaded by Dorell James Galang, and had the help of all the existing Cebu Tech Communities that time.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/Cebu%20Hacktoberfest"
+        "description": "During the 7th anniversary of PizzaPy, we participated in the first Cebu Hacktoberfest. The event was spearheaded by Dorell James Galang of Javascript Cebu, and had the help of all the existing Cebu Tech Communities that time.",
+        "image": "/images/history/Cebu_Hacktoberfest_2020.jpg"
     },
     {
         "title": "PizzaPy Website Launch",
         "date": "July 2024",
-        "description": "This website was launched. Along with PizzaPy being officially recognized as a local user group and being awarded the Python Software Foundation Grant.",
-        "image": "http://placeholder.pics/svg/300x300/FF5733/FFFFFF/PizzaPy%20Website%20Launch"
+        "description": "This website was launched. Along with PizzaPy being officially recognized as a local user group by the PSF (Python Software Foundation) and earning a Meetup.com Grant from PSF.",
+        "image": "/images/history/PyCon_PH_2016.png"
     }
 ]
