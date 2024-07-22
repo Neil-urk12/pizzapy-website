@@ -22,20 +22,24 @@ from django.urls import include, path
 from app import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("main/", include("app.urls")),
+    # HOME PAGE
     path("", views.index, name="index"),
-    path('events/', views.event_page, name='events'),
-    #events
-    #event_timeline = upcoming-events
-    path('events/upcoming-events/', views.get_upcoming_events, name='get_upcoming_events'),
-    #for jacob's events 
-    #group_name = meetup group name e.g. pizzapy-ph
-    #events/upcoming-events/cebu-city-cybersecurity-center-c4
-    path('events/upcoming-events/<str:group_name>/', views.get_upcoming_events, name='get_upcoming_events'),
-    path('about_us/', views.about_page, name='about_page'), 
+    # EVENT PAGE
+    path("events/", views.event_page, name="events"),
+    # ABOUT US PAGE
+    path("about_us/", views.about_page, name="about_page"),
+    # EVENTS
+    # event_timeline = upcoming-events
+    # path('events/', views.event_dispatcher, name='events'),
+    # FOR JACOB's EVENTS
+    # group_name = meetup group name e.g. pizzapy-ph
+    # SAMPLE: events/upcoming-events/cebu-city-cybersecurity-center-c4
+    # path('events/<str:event_timeline>/<str:group_name>/', views.event_dispatcher, name='events'),
+    # path('attend_event/<int:event_id>/', views.attend_event, name='attend_event'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static('/images/', document_root=os.path.join(settings.BASE_DIR, 'static/images'))
+    urlpatterns += static(
+        "/images/", document_root=os.path.join(settings.BASE_DIR, "static/images")
+    )
