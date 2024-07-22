@@ -3,13 +3,20 @@ from django.contrib.auth.decorators import login_required
 import requests
 from django.http import (
     HttpResponse,
-    HttpRequest,
-    HttpResponseNotFound,
-    HttpResponseRedirect,
+    JsonResponse,
+    HttpResponseBadRequest,
 )
 from django.urls import reverse
 from django.conf import settings
 from urllib.parse import urlparse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .utils import *
+import jwt
+from django.core.cache import cache
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.
@@ -29,175 +36,169 @@ def about_page(request):
     return render(request, "about_page.html")
 
 
-# BASE URL SETUP
-def get_redirect_uri(request):
-    default_group_name = "pizzapy-ph"
-    current_location = request.build_absolute_uri()
-
-    if current_location.startswith("http://127.0.0.1:8001/"):
-        current_location = current_location.replace(
-            "http://127.0.0.1:8001/", "https://pizzapy.ph/"
-        )
-
-    parsed_url = urlparse(current_location)
-    path = parsed_url.path.rstrip("/")
-    parts = path.split("/")
-
-    if len(parts) >= 3:
-        if len(parts) == 3:  # URL is like /events/upcoming-events
-            parts.append(default_group_name)  # Append default group name
-        redirect_uri = "/".join(parts)  # Join all parts to form the redirect URI
-        return redirect_uri
-    else:
-        return None  # Unable to determine redirect URI
-
-
-# MEETUP TOKEN ACCESS
-def get_access_token(request, code):
-    REDIRECT_URI = get_redirect_uri(request)
-    if not REDIRECT_URI:
-        return None  # Unable to determine redirect URI
-
-    token_url = "https://secure.meetup.com/oauth2/access"
-    payload = {
-        "client_id": settings.OAUTH_KEY,
-        "client_secret": settings.OAUTH_SECRET,
-        "grant_type": "authorization_code",
-        "redirect_uri": REDIRECT_URI,
-        "code": code,
-    }
-
-    response = requests.post(token_url, data=payload)
-    if response.status_code == 200:
-        return response.json().get("access_token")
-    else:
-        return None
-
-
-# FETCH EVENT VIA QUERY
-def fetch_events(query, token, variables):
-
-    url = "https://api.meetup.com/gql"
-    headers = {"Authorization": "Bearer " + token}
-    response = requests.post(
-        url, json={"query": query, "variables": variables}, headers=headers
-    )
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
-
-
-# EXTRACT EVENTS TO RENDER
-def extract_events(data, event_timeline):
-    return (
-        data.get("data", {})
-        .get("groupByUrlname", {})
-        .get(event_timeline, {})
-        .get("edges", [])
-    )
-
-
 # GET ALL UPCOMING EVENTS API
+# def get_upcoming_events(request, group_name=None):
+#     if not group_name:
+#         group_name = "pizzapy-ph"
+
+#     # Try to get events from cache
+#     events = cache.get(f'events_{group_name}')
+    
+#     if not events:
+#         # Cache miss, fetch from Meetup API
+#         upcoming_events_query = """
+#         query ($urlname: String!) {
+#             groupByUrlname(urlname: $urlname) {
+#                 id,
+#                 upcomingEvents(input: { first: 3 }, sortOrder: ASC){
+#                     count,
+#                     pageInfo {
+#                         endCursor
+#                     },
+#                     edges {
+#                         node {
+#                             id
+#                             title
+#                             description
+#                             eventType
+#                             images {
+#                                 source
+#                             }
+#                             venue {
+#                                 address
+#                                 city
+#                                 postalCode
+#                             }
+#                             createdAt
+#                             dateTime
+#                             endTime
+#                             timezone
+#                             going
+#                             shortUrl
+#                             host {
+#                                 name
+#                                 username
+#                                 email
+#                                 memberPhoto {
+#                                     id
+#                                     baseUrl
+#                                     preview
+#                                     source
+#                                 }
+#                                 memberUrl
+#                                 organizedGroupCount
+#                             }
+#                         }
+#                     }
+#                 }
+#             }
+#         }
+#         """
+
+#         token = get_valid_access_token()
+#         if not token:
+#             return HttpResponse("Failed to retrieve access token", status=400)
+
+#         variables = {"urlname": group_name}
+#         data = fetch_events(upcoming_events_query, token, variables)
+
+#         if data:
+#             events = extract_events(data, "upcomingEvents")
+#             cache.set(f'events_{group_name}', events, timeout=86400)  # Cache for 24 hours
+#         else:
+#             events = []
+
+#     if events:
+#         first_event = events[0]["node"] if len(events) > 0 else None
+#         other_events = [event["node"] for event in events[1:]]
+#         return render(
+#             request,
+#             "event_page.html",
+#             {"first_event": first_event, "other_events": other_events},
+#         )
+#     else:
+#         return render(
+#             request,
+#             "event_page.html",
+#             {"error_message": "No upcoming events found", "events_json": "[]"},
+#         )
+
 def get_upcoming_events(request, group_name=None):
     if not group_name:
         group_name = "pizzapy-ph"
 
-    upcoming_events_query = """
-    query ($urlname: String!) {
-        groupByUrlname(urlname: $urlname) {
-            id,
-            upcomingEvents(input: { first: 3 }, sortOrder: ASC){
-                count,
-                pageInfo {
-                    endCursor
-                },
-                edges {
-                    node {
-                        id
-                        title
-                        description
-                        eventType
-                        images {
-                            source
-                        }
-                        venue {
-                            address
-                            city
-                            postalCode
-                        }
-                        createdAt
-                        dateTime
-                        endTime
-                        timezone
-                        going
-                        shortUrl
-                        host {
-                            name
-                            username
-                            email
-                            memberPhoto {
-                                id
-                                baseUrl
-                                preview
-                                source
-                            }
-                            memberUrl
-                            organizedGroupCount
-                        }
-                    }
-                }
-            }
-        }
-    }
-    """
+    # Try to get events from cache
+    events = cache.get(f'events_{group_name}')
 
-    token = request.token  # Ensure you have the token obtained somehow
-    if not token:
-        return HttpResponse("Failed to retrieve access token", status=400)
-
-    variables = {"urlname": group_name}
-    data = fetch_events(upcoming_events_query, token, variables)
-
-    if data:
-        events = extract_events(data, "upcomingEvents")
-        # print(events)
-        if events:
-            first_event = events[0]["node"]
-            other_events = [event["node"] for event in events[1:]]
-            return render(
-                request,
-                "event_page.html",
-                {"first_event": first_event, "other_events": other_events},
-            )
-        else:
-            return render(
-                request,
-                "event_page.html",
-                {"error_message": "No upcoming events found", "events_json": "[]"},
-            )
-    else:
+    if not events:
         return render(
             request,
             "event_page.html",
-            {"error_message": "Failed to retrieve events", "events_json": "[]"},
+            {"error_message": "No upcoming events found", "events_json": "[]"},
         )
 
-
-# EVENT TOGGLE FROM PAST AND UPCOMING EVENTS
-def event_dispatcher(request, event_timeline=None, group_name=None):
-    if event_timeline == "past-events":
-        return  # get_past_events(request, group_name)
-    elif event_timeline == "upcoming-events":
-        return get_upcoming_events(request, group_name)
-    else:
-        return HttpResponseNotFound("Event type not found")
+    first_event = events[0]["node"] if len(events) > 0 else None
+    other_events = [event["node"] for event in events[1:]]
+    return render(
+        request,
+        "event_page.html",
+        {"first_event": first_event, "other_events": other_events},
+    )
 
 
-# ATTEND EVENT VIA MEETUP API
-def attend_event(request, event_id):
-    if request.method == "POST":
-        group_name = request.POST.get("group_name")
-        return HttpResponseRedirect(reverse("get_upcoming_events", args=[group_name]))
-    else:
-        return HttpResponse(status=405)
+@csrf_exempt
+def meetup_webhook(request):
+    if request.method == 'POST':
+
+        try:
+            data = json.loads(request.body)
+            print(data)
+            # Process the webhook data
+            update_events_cache(data)
+            return JsonResponse({'status': 'success'})
+        except json.JSONDecodeError:
+            return HttpResponseBadRequest("Invalid JSON")
+    return HttpResponseBadRequest("Invalid request method")
+
+# def meetup_webhook(request):
+#     logger.info(f"Received {request.method} request with body: {request.body}")
+
+#     if request.method != 'POST':
+#         return HttpResponseBadRequest("Invalid request method")
+
+#     try:
+#         data = json.loads(request.body)
+#         if 'data' in data and 'groupByUrlname' in data['data']:
+#             group_name = data['data']['groupByUrlname']['urlname']
+#             events = data['data']['groupByUrlname']['upcomingEvents']['edges']
+            
+#             # Log the incoming data for debugging
+#             logger.info(f"Received events for group {group_name}: {events}")
+
+#             # Cache the events
+#             cache.set(f'events_{group_name}', events, timeout=86400)
+#             return JsonResponse({'status': 'success'})
+#         else:
+#             logger.warning("Webhook data does not contain expected fields.")
+#             return HttpResponseBadRequest("Invalid data format")
+#     except json.JSONDecodeError:
+#         logger.error("Failed to decode JSON from request body.")
+#         return HttpResponseBadRequest("Invalid JSON")
+#     except Exception as e:
+#         logger.error(f"An unexpected error occurred: {e}")
+#         return HttpResponseBadRequest("An unexpected error occurred")
+
+#CHECKING CACHE
+def check_cache(request):
+    group_names = [
+        "pizzapy-ph",
+        "cebu-city-cybersecurity-center-c4",
+        "p5-management-hub",
+    ]
+
+    cached_data = {}
+    for group_name in group_names:
+        cached_events = cache.get(f'events_{group_name}')
+        cached_data[group_name] = cached_events
+
+    return JsonResponse(cached_data)

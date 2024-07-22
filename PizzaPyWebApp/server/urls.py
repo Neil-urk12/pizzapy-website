@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from app import views
+from app.views import meetup_webhook
 
 urlpatterns = [
     # HOME PAGE
@@ -28,14 +29,13 @@ urlpatterns = [
     path("events/", views.event_page, name="events"),
     # ABOUT US PAGE
     path("about_us/", views.about_page, name="about_page"),
-    # EVENTS
-    # event_timeline = upcoming-events
-    # path('events/', views.event_dispatcher, name='events'),
     # FOR JACOB's EVENTS
     # group_name = meetup group name e.g. pizzapy-ph
-    # SAMPLE: events/upcoming-events/cebu-city-cybersecurity-center-c4
-    # path('events/<str:event_timeline>/<str:group_name>/', views.event_dispatcher, name='events'),
-    # path('attend_event/<int:event_id>/', views.attend_event, name='attend_event'),
+    # SAMPLE: events/cebu-city-cybersecurity-center-c4
+    path('events/<str:group_name>/', views.get_upcoming_events, name='events'),
+    # MEETUP WEBHOOK ENDPOINT
+    path('webhook/meetup/', meetup_webhook, name='meetup_webhook'),
+    path('check-cache/', views.check_cache, name='check_cache'),
 ]
 
 if settings.DEBUG:
@@ -43,3 +43,4 @@ if settings.DEBUG:
     urlpatterns += static(
         "/images/", document_root=os.path.join(settings.BASE_DIR, "static/images")
     )
+

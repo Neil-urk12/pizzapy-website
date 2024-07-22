@@ -32,10 +32,14 @@ STATICFILES_DIRS = [
 SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7("
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 DEBUG = True
 
+
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
+# ALLOWED_HOSTS = ['127.0.0.1']
 ALLOWED_HOSTS = []
+
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -153,3 +157,16 @@ environ.Env.read_env(env_file='.env')
 # Set variables
 OAUTH_KEY = env('OAUTH_KEY')
 OAUTH_SECRET = env('OAUTH_SECRET')
+MEMBER_ID = env('MEMBER_ID')
+
+MEETUP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'meetup_key.pem')
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',  # For local memory cache
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
+
+
