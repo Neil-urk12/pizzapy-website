@@ -17,3 +17,5 @@ __pycache__/
 bun.lockb
 
 .env
+meetup_key.jwt
+meetup_key.pem
