@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from app import views
+# from app.views import meetup_webhook
 
 urlpatterns = [
     # HOME PAGE
@@ -32,7 +33,8 @@ urlpatterns = [
     # group_name = meetup group name e.g. pizzapy-ph
     # SAMPLE: events/cebu-city-cybersecurity-center-c4
     path('events/<str:group_name>/', views.get_upcoming_events, name='events'),
-    # CHECKING CACHE ONLY
+    # MEETUP WEBHOOK ENDPOINT
+    # path('webhook/meetup/', meetup_webhook, name='meetup_webhook'),
     path('check-cache/', views.check_cache, name='check_cache'),
 ]
 

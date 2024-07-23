@@ -128,7 +128,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
@@ -154,19 +155,29 @@ env = environ.Env()
 # Reading .env file
 environ.Env.read_env(env_file='.env')
 
-# Set variables
+# for JWT
 OAUTH_KEY = env('OAUTH_KEY')
 OAUTH_SECRET = env('OAUTH_SECRET')
 MEMBER_ID = env('MEMBER_ID')
 
 MEETUP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'meetup_key.pem')
 
+#for caching
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',  # For local memory cache
-        'LOCATION': 'unique-snowflake',
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://localhost:6379/1', 
     }
 }
 
 
+#for daily cache update
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Manila'  # Philippine Time
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True #due to Celery 6.0 broker_connection_retry deprecation
 
