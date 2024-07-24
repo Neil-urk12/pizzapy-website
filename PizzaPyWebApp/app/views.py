@@ -1,36 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-import requests
-from django.http import (
-    HttpResponse,
-    JsonResponse,
-    HttpResponseBadRequest,
-)
-from django.urls import reverse
-from django.conf import settings
-from urllib.parse import urlparse
-from django.views.decorators.csrf import csrf_exempt
-import json
-from .utils import *
-import jwt
+from django.http import JsonResponse
 from django.core.cache import cache
-import logging
-
-logger = logging.getLogger(__name__)
-
-
-# Create your views here.
 
 # NAV LINK (PAGES)
 def index(request):
     context = {}
     return render(request, "index.html", context)
 
-
 def event_page(request, group_name=None):
     # return render(request, 'event_page.html')
     return get_upcoming_events(request, group_name)
-
 
 def about_page(request):
     return render(request, "about_page.html")

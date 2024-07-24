@@ -156,11 +156,13 @@ env = environ.Env()
 environ.Env.read_env(env_file='.env')
 
 # for JWT
+MEETUP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'meetup_key.pem')
 OAUTH_KEY = env('OAUTH_KEY')
-OAUTH_SECRET = env('OAUTH_SECRET')
 MEMBER_ID = env('MEMBER_ID')
 
-MEETUP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'meetup_key.pem')
+#not included in JWT
+OAUTH_SECRET = env('OAUTH_SECRET')
+
 
 #for caching
 CACHES = {
