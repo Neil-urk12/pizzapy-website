@@ -35,7 +35,7 @@ SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7(
 DEBUG = False
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["www.pizzapy.ph", "pizzapy.ph"]
+ALLOWED_HOSTS = ["www.pizzapy.ph", "pizzapy.ph", "pizzapy-website.onrender.com", "localhost"]
 
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # if RENDER_EXTERNAL_HOSTNAME:
