@@ -32,7 +32,7 @@ STATICFILES_DIRS = [
 SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["www.pizzapy.ph", "pizzapy.ph"]
