@@ -1,73 +1,49 @@
 {
     "sponsors": [
         {
-            "name": "PyTsada",
-            "link": "#yourlink",
-            "image": "/images/sponsors/PyTsada.png"
+            "name": "enspace Cebu",
+            "link": "https://www.enspace.work/cebu-en/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "The Graph Philippines",
-            "link": "#yourlink",
-            "image": "/images/sponsors/TheGraphPhilippines.png"
+            "name": "The Company Cebu",
+            "link": "https://thecompany.ph/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "Web3 Cebu",
-            "link": "#yourlink",
-            "image": "/images/sponsors/Web3Cebu.png"
+            "name": "From Here Coworking",
+            "link": "https://fromherecebu.com/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "Women Techmakers Cebu",
-            "link": "#yourlink",
-            "image": "/images/sponsors/WomenTechmakersCebu.png"
+            "name": "LegalMatch Philippines",
+            "link": "https://legalmatch.ph/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "Wordpress Cebu",
-            "link": "#yourlink",
-            "image": "/images/sponsors/WordpressCebu.png"
+            "name": "KILSA Philippines",
+            "link": "https://kilsaglobal.com/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "Cebu Game Dev",
-            "link": "#yourlink",
-            "image": "/images/sponsors/CebuGameDev.png"
-        }
-    ],
-    "sponsors2": [
-        {
-            "name": "DevCon",
-            "link": "#yourlink",
-            "image": "/images/sponsors/DevCon.png"
+            "name": "DTI Region 7",
+            "link": "https://www.dti.gov.ph/regions/region-7/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "Game Developers Association of the Philippines",
-            "link": "#yourlink",
-            "image": "/images/sponsors/GameDevelopersAssociationofthePhilippines.png"
+            "name": "DOHE Philippines",
+            "link": "https://www.doheglobal.com/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "GDG Cebu",
-            "link": "#yourlink",
-            "image": "/images/sponsors/GDGCebu.png"
+            "name": "Automaton Systems",
+            "link": "https://www.automatonsystems.io/",
+            "image": "/images/partners/PyTsada.png"
         },
         {
-            "name": "JavaScript Cebu",
-            "link": "#yourlink",
-            "image": "/images/sponsors/JavaScriptCebu.png"
-        },
-        {
-            "name": "Laravel Cebu",
-            "link": "#yourlink",
-            "image": "/images/sponsors/LaravelCebu.png"
-        }
-    ],
-    "affiliated": [
-        {
-            "name": "CIB.O",
-            "link": "#yourlink",
-            "image": "/images/sponsors/CIBO.png"
-        },
-        {
-            "name": "Philippine Tech Community",
-            "link": "#yourlink",
-            "image": "/images/sponsors/PhilippineTechCommunity.png"
+            "name": "Prezenter",
+            "link": "https://prezenter.ph/",
+            "image": "/images/partners/PyTsada.png"
         }
     ]
 }
