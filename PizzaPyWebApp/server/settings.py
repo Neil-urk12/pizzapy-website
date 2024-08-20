@@ -19,7 +19,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "images"),
@@ -35,7 +35,13 @@ SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7(
 DEBUG = True
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["www.pizzapy.ph", "pizzapy.ph", "pizzapy-website.onrender.com", "localhost"]
+ALLOWED_HOSTS = [
+    "www.pizzapy.ph",
+    "pizzapy.ph",
+    "pizzapy-website.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]  # Added 127.0.0.1 (Jed)
 
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # if RENDER_EXTERNAL_HOSTNAME:
@@ -63,8 +69,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    'app.middleware.TokenMiddleware',
-
+    "app.middleware.TokenMiddleware",
 ]
 
 ROOT_URLCONF = "server.urls"
@@ -147,8 +152,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Initialise environment variables
 env = environ.Env()
 # Reading .env file
-environ.Env.read_env(env_file='.env')
+environ.Env.read_env(env_file=".env")
 
 # Set variables
-OAUTH_KEY = env('OAUTH_KEY')
-OAUTH_SECRET = env('OAUTH_SECRET')
+OAUTH_KEY = env("OAUTH_KEY")
+OAUTH_SECRET = env("OAUTH_SECRET")
