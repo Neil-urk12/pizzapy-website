@@ -41,14 +41,9 @@
             "image": "/images/sponsors/DOHE Philippines.png"
         },
         {
-            "name": "Automaton Systems",
-            "link": "https://www.automatonsystems.io/",
-            "image": "/images/sponsors/Automaton Systems.png"
-        },
-        {
             "name": "Prezenter",
             "link": "https://prezenter.ph/",
-            "image": "/images/sponsors/PyTsada.png"
+            "image": "/images/sponsors/Prezenter.png"
         }
     ]
 }
