@@ -8,7 +8,7 @@
     {
         "title": "PizzaPy Cebu Python Users Group",
         "date": "Oct 2013",
-        "description": "PizzaPy Cebu Python Users Group was founded by Daryl Yu and Marconi Moreto. First meetup was held at Handuraw Pizza - Gorordo Ave. Branch. It started as a monthly meetup to discuss Python and other emerging technologies.",
+        "description": "PizzaPy Cebu Python Users Group was started by two fat bearded guys named Marconi Moreto and Daryl Yu. The meetups from the first year were mostly held at Handuraw Pizza - Gorordo Ave. Branch. Prior to starting PizzaPy, Marconi and Daryl would regularly meet in Handuraw for pizza and beer to talk about Python and other tech. They didn't have lofty goals. They just wanted companies to sponsor their pizza and beer while talking about Python and tech.",
         "image": "/images/history/Handuraw_Gorordo.jpg"
     },
     {
@@ -18,16 +18,16 @@
         "image": "/images/history/PyCon_PH_2016.png"
     },
     {
-        "title": "2nd Generation Lead Organizers",
-        "date": "Dec 2018",
-        "description": "Neriah “BJ” Ato, Cleo Credo, Jommar Lodonia, and Cristopher Cutas took over as the 2nd Generation Lead Organizers of PizzaPy.",
-        "image": "/images/history/Second_Generation.jpg"
+        "title": "2nd Generation",
+        "date": "2017 - 2018",
+        "description": "Murat Knecht, Zakatell Kanda, Roger Casalñas, and Ron Khu took over as the 2nd generation of lead organizers of PizzaPy. Most of the meetups from this time period were done at Cebu's first co-working space The Tide - a collaboration between the founders of engageSPARK and Symph.",
+        "image": "/images/history/Ron.jpg"
     },
     {
-        "title": "PizzaPy Reborn",
-        "date": "Nov 2018",
-        "description": "PizzaPy is revived again with Ron Michael Khu's initiative. Meetups were supported by the newly opened Co-Working Space, The Company Cebu at JDN Square, Mandaue. They eventually opened a branch in IT Park.",
-        "image": "/images/history/The_Company_Cebu_Mandaue.jpg"
+        "title": "3rd Generation",
+        "date": "Dec 2018 - present",
+        "description": "Ron Khu recruits Neriah “BJ” Ato, Cleo Credo, Jommar Lodonia, and Cristopher Cutas took over as the 3rd generation of lead organizers of PizzaPy.",
+        "image": "/images/history/Third_Generation.jpg"
     },
     {
         "title": "Arduino Day Cebu 2019",
@@ -63,6 +63,6 @@
         "title": "PizzaPy Website Launch",
         "date": "July 2024",
         "description": "This website was launched. Along with PizzaPy being officially recognized as a local user group by the PSF (Python Software Foundation) and earning a Meetup.com Grant from PSF.",
-        "image": "/images/history/PyCon_PH_2016.png"
+        "image": "/images/history/PizzaPy_Site.png"
     }
 ]
