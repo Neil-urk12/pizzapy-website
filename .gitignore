@@ -17,3 +17,6 @@ __pycache__/
 bun.lockb
 
 .env
+
+*.sqlite3
+.DS_Store

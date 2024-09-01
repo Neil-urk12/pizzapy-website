@@ -26,7 +26,25 @@ cd PizzaPyWebApp/js_lib
 npm install
 ```
 
+### Environment Variables
+
+1. You'll need two environment variables to be able to run the `manage.py runserver` command. If you're using VSCode, run these commands:
+
+```bash
+npx shx cp PizzaPyWebApp/.env.example PizzaPyWebApp/.env # copies .env.example to .env
+code PizzaPyWebApp/.env # opens your editor for .env
+```
+
+- If you don't use VSCode, just edit the newly created `.env` file manually.
+
+2. Next, you'll need to replace the `check-jira-references-column` values with the values found in Jira.
+
+3. The next section should work without issues, otherwise ask the maintainers for help.
+
 ## Usage
+
+> [!WARNING]
+> Ensure you've set up the `.env` file with the proper values found in Jira before proceeding!
 
 Once you've installed the dependencies, you can now run the application or build scripts.
 
@@ -77,6 +95,7 @@ rm '/PizzaPyWebApp/js_lib/node_modules'
 ```
 
 ### Dockerization
+
 1. To build the container, Run `docker build -t pizzapy-website .`
 2. To run the container, use `docker run -d -p 8000:8000 pizzapy-website`
 3. Visit `http://localhost:8000` to view the site
