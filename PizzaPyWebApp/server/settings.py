@@ -155,5 +155,5 @@ env = environ.Env()
 environ.Env.read_env(env_file=".env")
 
 # Set variables
-OAUTH_KEY = env("OAUTH_KEY")
-OAUTH_SECRET = env("OAUTH_SECRET")
+OAUTH_KEY = env("OAUTH_KEY", default="")
+OAUTH_SECRET = env("OAUTH_SECRET", default="")
