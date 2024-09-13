@@ -23,8 +23,10 @@ RUN cd /app/PizzaPyWebApp
 
 RUN pwd
 
-EXPOSE 8000
 
 WORKDIR /app/PizzaPyWebApp
 
+RUN python manage.py collectstatic --no-input
+
+EXPOSE 8000
 CMD ["gunicorn", "server.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
