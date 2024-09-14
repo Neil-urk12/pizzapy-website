@@ -25,6 +25,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "images"),
 ]
 
+# Initialise environment variables
+env = environ.Env()
+
+breakpoint()
+
+# Reading .env file
+environ.Env.read_env(env_file=".env")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -32,7 +40,7 @@ STATICFILES_DIRS = [
 SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=True)
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
