@@ -26,7 +26,9 @@ STATICFILES_DIRS = [
 ]
 
 # Initialise environment variables
-env = environ.Env()
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
 # Reading .env file
 environ.Env.read_env(env_file=".env")
@@ -38,7 +40,7 @@ environ.Env.read_env(env_file=".env")
 SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", default=True)
+DEBUG = env("DEBUG", default=False)
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
