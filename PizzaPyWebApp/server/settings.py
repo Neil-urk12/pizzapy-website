@@ -28,8 +28,6 @@ STATICFILES_DIRS = [
 # Initialise environment variables
 env = environ.Env()
 
-breakpoint()
-
 # Reading .env file
 environ.Env.read_env(env_file=".env")
 
@@ -156,12 +154,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# Initialise environment variables
-env = environ.Env()
-# Reading .env file
-environ.Env.read_env(env_file=".env")
 
 # Set variables
 OAUTH_KEY = env("OAUTH_KEY", default="")
