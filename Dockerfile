@@ -19,11 +19,6 @@ COPY . .
 
 RUN cd PizzaPyWebApp/js_lib && npm install
 
-RUN cd /app/PizzaPyWebApp
-
-RUN pwd
-
-
 WORKDIR /app/PizzaPyWebApp
 
 RUN python manage.py collectstatic --no-input
