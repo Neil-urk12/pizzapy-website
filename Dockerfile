@@ -19,6 +19,9 @@ COPY . .
 
 RUN cd PizzaPyWebApp/js_lib && npm install
 
-EXPOSE 8000
+WORKDIR /app/PizzaPyWebApp
 
-CMD ["python", "PizzaPyWebApp/manage.py", "runserver", "0.0.0.0:8000"]
+RUN python manage.py collectstatic --no-input
+
+EXPOSE 8000
+CMD ["gunicorn", "server.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]

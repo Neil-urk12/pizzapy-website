@@ -25,6 +25,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "images"),
 ]
 
+# Initialise environment variables
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+# Reading .env file
+environ.Env.read_env(env_file=".env")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -32,7 +40,7 @@ STATICFILES_DIRS = [
 SECRET_KEY = "django-insecure-e$-+6ch+!z!ayome!-1=x%w0^db7hbik1@1jkx)gg2u7iffp7("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=False)
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
@@ -62,6 +70,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -137,7 +146,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
@@ -148,12 +157,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-# Initialise environment variables
-env = environ.Env()
-# Reading .env file
-environ.Env.read_env(env_file=".env")
-
 # Set variables
-OAUTH_KEY = env("OAUTH_KEY")
-OAUTH_SECRET = env("OAUTH_SECRET")
+OAUTH_KEY = env("OAUTH_KEY", default="")
+OAUTH_SECRET = env("OAUTH_SECRET", default="")
