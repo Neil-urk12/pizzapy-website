@@ -74,12 +74,12 @@
             console.log('Event updated to:', data[currentImageIndex]);
         } else if ('{{ error_message }}' !== '') {
             // Use an error placeholder image if there is an error
-            addressInput.value = "Error loading events";
-            eventImage.src = 'https://via.placeholder.com/748x498.png?text=Error+Loading+Events';
+            {#addressInput.value = "Error loading events";#}
+            addressInput.value = "{{ error_message }}";
+            eventImage.src = 'https://via.placeholder.com/748x498.png?text={{ error_message }}';
             eventImage.classList.remove('opacity-0');
             eventImage.classList.add('opacity-100');
             eventLink.href = "#";
-            console.log('Error loading events');
         } else {
             // Use a placeholder image if no events are available
             addressInput.value = "No upcoming events";
