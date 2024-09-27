@@ -3,47 +3,47 @@
         {
             "name": "Regulated Cloud",
             "link": "https://regulated.cloud/",
-            "image": "/images/sponsors/Regulated Cloud.png"
+            "image": "/static/images/sponsors/Regulated Cloud.png"
         },
         {
             "name": "enspace Cebu",
             "link": "https://enspace.ph",
-            "image": "/images/sponsors/Enspace.png"
+            "image": "/static/images/sponsors/Enspace.png"
         },
         {
             "name": "The Company Cebu",
             "link": "https://thecompany.ph/",
-            "image": "/images/sponsors/The Company Cebu.png"
+            "image": "/static/images/sponsors/The Company Cebu.png"
         },
         {
             "name": "From Here Coworking",
             "link": "https://fromherecebu.com/",
-            "image": "/images/sponsors/FROM HERE.png"
+            "image": "/static/images/sponsors/FROM HERE.png"
         },
         {
             "name": "LegalMatch Philippines",
             "link": "https://legalmatch.ph/",
-            "image": "/images/sponsors/LegalMatch.png"
+            "image": "/static/images/sponsors/LegalMatch.png"
         },
         {
             "name": "KILSA Philippines",
             "link": "https://kilsaglobal.com/",
-            "image": "/images/sponsors/KILSA.png"
+            "image": "/static/images/sponsors/KILSA.png"
         },
         {
             "name": "DTI Region 7",
             "link": "https://www.dti.gov.ph/regions/region-7/",
-            "image": "/images/sponsors/DTI Central Visayas.png"
+            "image": "/static/images/sponsors/DTI Central Visayas.png"
         },
         {
             "name": "DOHE Philippines",
             "link": "https://www.doheglobal.com/",
-            "image": "/images/sponsors/DOHE Philippines.png"
+            "image": "/static/images/sponsors/DOHE Philippines.png"
         },
         {
             "name": "Prezenter",
             "link": "https://prezenter.ph/",
-            "image": "/images/sponsors/Prezenter.png"
+            "image": "/static/images/sponsors/Prezenter.png"
         }
     ]
 }
