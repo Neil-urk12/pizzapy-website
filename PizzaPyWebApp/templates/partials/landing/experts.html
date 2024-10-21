@@ -1,0 +1,230 @@
+<div style="margin-bottom: 80px">
+  <div class="flex-col space-y-4" style="margin-bottom: 50px">
+    <h2 class="text-4xl font-bold text-yellow-500 text-center">OUR EXPERTS</h2>
+  </div>
+  <div>
+    <div class="grid-container">
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/web-off.svg"
+            alt="Web Development Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-web-development" class="label-text font-medium"
+          >Web Development</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/clooud.svg"
+            alt="Cloud Computing Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-cloud-computing" class="label-text font-medium"
+          >Cloud Computing and DevOps</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/blockchain.svg"
+            alt="Blockchain Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-blockchain" class="label-text font-medium"
+          >Blockchain</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/ai.svg"
+            alt="AI Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-ai" class="label-text font-medium"
+          >Artificial Intelligence</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/data.svg"
+            alt="Data Science Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-data-science" class="label-text font-medium"
+          >Data Science and Analytics</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/game.svg"
+            alt="Game Development Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-game-development" class="label-text font-medium"
+          >Game Development</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/iot.svg"
+            alt="IoT Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-iot" class="label-text font-medium"
+          >Internet of Things</span
+        >
+      </a>
+      <a
+        href="https://www.facebook.com/groups/pizzapy.ph/"
+        target="_blank"
+        class="grid-item flex-col items-center"
+      >
+        <div class="icon-container">
+          <img
+            src="../../../static/css/icons/system.svg"
+            alt="System Design Icon"
+            class="icon"
+          />
+        </div>
+        <span id="label-system-design" class="label-text font-medium"
+          >System Design</span
+        >
+      </a>
+    </div>
+  </div>
+  <div style="height: 50px"></div>
+</div>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #121b2c;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .grid-item:hover {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .icon-container {
+    background-color: #3b3f8c;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+  }
+
+  .grid-item:hover .icon {
+    transform: scale(1.1);
+  }
+
+  .label-text {
+    font-weight: 500;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 24px;
+    transition: color 0.3s ease;
+  }
+
+  .grid-item:hover .label-text,
+  .icon-container:hover + .label-text {
+    color: #4f46e5;
+  }
+  .grid-item:hover .icon-container,
+  .icon-container:hover {
+    background-color: #4f46e5;
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+    .icon-container {
+      width: 48px;
+      height: 48px;
+    }
+    .grid-item {
+      height: 150px;
+      width: 150px;
+    }
+    .label-text {
+      font-weight: 400;
+      align-items: center;
+      font-size: 10px;
+      margin-top: 12px;
+      transition: color 0.3s ease;
+    }
+  }
+</style>
