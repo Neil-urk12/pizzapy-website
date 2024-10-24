@@ -1,147 +1,62 @@
-<div style="margin-bottom: 80px">
+<div class="min-h-screen">
   <div class="flex-col space-y-4" style="margin-bottom: 50px">
     <h2 class="text-4xl font-bold text-yellow-500 text-center">OUR EXPERTS</h2>
   </div>
   <div>
-    <div class="grid-container">
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/web-off.svg"
-            alt="Web Development Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-web-development" class="label-text font-medium"
-          >Web Development</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/clooud.svg"
-            alt="Cloud Computing Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-cloud-computing" class="label-text font-medium"
-          >Cloud Computing and DevOps</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/blockchain.svg"
-            alt="Blockchain Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-blockchain" class="label-text font-medium"
-          >Blockchain</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/ai.svg"
-            alt="AI Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-ai" class="label-text font-medium"
-          >Artificial Intelligence</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/data.svg"
-            alt="Data Science Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-data-science" class="label-text font-medium"
-          >Data Science and Analytics</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/game.svg"
-            alt="Game Development Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-game-development" class="label-text font-medium"
-          >Game Development</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/iot.svg"
-            alt="IoT Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-iot" class="label-text font-medium"
-          >Internet of Things</span
-        >
-      </a>
-      <a
-        href="https://www.facebook.com/groups/pizzapy.ph/"
-        target="_blank"
-        class="grid-item flex-col items-center"
-      >
-        <div class="icon-container">
-          <img
-            src="../../../static/css/icons/system.svg"
-            alt="System Design Icon"
-            class="icon"
-          />
-        </div>
-        <span id="label-system-design" class="label-text font-medium"
-          >System Design</span
-        >
-      </a>
+    <div class="grid-container" id="experts-grid">
+      <!-- Expert cards will be generated here -->
     </div>
   </div>
-  <div style="height: 50px"></div>
+  <div style="height: 120px"></div>
 </div>
+
+<script>
+  fetch("../../../static/data/experts.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const expertsGrid = document.getElementById("experts-grid");
+
+      data.experts.forEach((expert) => {
+        if (expert.name && expert.image && expert.link) {
+          const expertCard = document.createElement("a");
+          expertCard.href = expert.link;
+          expertCard.target = "_blank";
+          expertCard.className = "grid-item flex-col items-center";
+
+          const iconContainer = document.createElement("div");
+          iconContainer.className = "icon-container";
+
+          const icon = document.createElement("img");
+          icon.src = expert.image;
+          icon.alt = `${expert.name} Icon`;
+          icon.className = "icon";
+
+          const label = document.createElement("span");
+          label.id = `label-${expert.name.toLowerCase().replace(/ /g, "-")}`;
+          label.className = "label-text font-medium";
+          label.textContent = expert.name;
+
+          iconContainer.appendChild(icon);
+          expertCard.appendChild(iconContainer);
+          expertCard.appendChild(label);
+          expertsGrid.appendChild(expertCard);
+        } else {
+          console.error("Invalid expert data:", expert);
+        }
+      });
+    })
+    .catch((error) => console.error("Error fetching the experts data:", error));
+</script>
 
 <style>
   .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-
     gap: 12px;
     cursor: pointer;
   }
@@ -171,7 +86,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
     transition: background-color 0.3s ease;
   }
 
@@ -190,8 +104,8 @@
     font-weight: 500;
     align-items: center;
     font-size: 14px;
-    margin-top: 24px;
     transition: color 0.3s ease;
+    margin-top: 14px;
   }
 
   .grid-item:hover .label-text,
@@ -223,7 +137,7 @@
       font-weight: 400;
       align-items: center;
       font-size: 10px;
-      margin-top: 12px;
+
       transition: color 0.3s ease;
     }
   }
