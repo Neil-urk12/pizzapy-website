@@ -1,5 +1,5 @@
 {
-  "experts": [
+  "topics": [
     {
       "name": "Web Development",
       "link": "https://www.facebook.com/groups/pizzapy.ph/",
@@ -36,9 +36,9 @@
       "image": "../../../static/css/icons/iot.svg"
     },
     {
-      "name": "System Design",
+      "name": "And many more...",
       "link": "https://www.facebook.com/groups/pizzapy.ph/",
-      "image": "../../../static/css/icons/system.svg"
+      "image": "../../../static/css/icons/etc-off.svg"
     }
   ]
 }

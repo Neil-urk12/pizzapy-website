@@ -1,17 +1,17 @@
 <div class="min-h-screen">
   <div class="flex-col space-y-4" style="margin-bottom: 50px">
-    <h2 class="text-4xl font-bold text-yellow-500 text-center">OUR EXPERTS</h2>
+    <h2 class="text-4xl font-bold text-yellow-500 text-center">OUR TOPICS</h2>
   </div>
   <div>
-    <div class="grid-container" id="experts-grid">
-      <!-- Expert cards will be generated here -->
+    <div class="grid-container" id="topics-grid">
+      <!-- topic cards will be generated here -->
     </div>
   </div>
   <div style="height: 120px"></div>
 </div>
 
 <script>
-  fetch("../../../static/data/experts.json")
+  fetch("../../../static/data/topics.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -19,38 +19,38 @@
       return response.json();
     })
     .then((data) => {
-      const expertsGrid = document.getElementById("experts-grid");
+      const topicsGrid = document.getElementById("topics-grid");
 
-      data.experts.forEach((expert) => {
-        if (expert.name && expert.image && expert.link) {
-          const expertCard = document.createElement("a");
-          expertCard.href = expert.link;
-          expertCard.target = "_blank";
-          expertCard.className = "grid-item flex-col items-center";
+      data.topics.forEach((topic) => {
+        if (topic.name && topic.image && topic.link) {
+          const topicCard = document.createElement("a");
+          topicCard.href = topic.link;
+          topicCard.target = "_blank";
+          topicCard.className = "grid-item flex-col items-center";
 
           const iconContainer = document.createElement("div");
           iconContainer.className = "icon-container";
 
           const icon = document.createElement("img");
-          icon.src = expert.image;
-          icon.alt = `${expert.name} Icon`;
+          icon.src = topic.image;
+          icon.alt = `${topic.name} Icon`;
           icon.className = "icon";
 
           const label = document.createElement("span");
-          label.id = `label-${expert.name.toLowerCase().replace(/ /g, "-")}`;
+          label.id = `label-${topic.name.toLowerCase().replace(/ /g, "-")}`;
           label.className = "label-text font-medium";
-          label.textContent = expert.name;
+          label.textContent = topic.name;
 
           iconContainer.appendChild(icon);
-          expertCard.appendChild(iconContainer);
-          expertCard.appendChild(label);
-          expertsGrid.appendChild(expertCard);
+          topicCard.appendChild(iconContainer);
+          topicCard.appendChild(label);
+          topicsGrid.appendChild(topicCard);
         } else {
-          console.error("Invalid expert data:", expert);
+          console.error("Invalid topic data:", topic);
         }
       });
     })
-    .catch((error) => console.error("Error fetching the experts data:", error));
+    .catch((error) => console.error("Error fetching the topics data:", error));
 </script>
 
 <style>
