@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import RedirectView
+
 from app import views
 
 urlpatterns = [
@@ -36,6 +38,11 @@ urlpatterns = [
     # SAMPLE: events/upcoming-events/cebu-city-cybersecurity-center-c4
     # path('events/<str:event_timeline>/<str:group_name>/', views.event_dispatcher, name='events'),
     # path('attend_event/<int:event_id>/', views.attend_event, name='attend_event'),
+path('discord/', RedirectView.as_view(url='https://discord.com/channels/1007903186373316698/1258792014926053408/1379772500107595868', permanent=False), name='discord'),
+    path('facebook/', RedirectView.as_view(url='https://www.facebook.com/groups/pizzapy.ph/', permanent=False), name='facebook'),
+    path('github/', RedirectView.as_view(url='https://github.com/pizzapy/', permanent=False), name='github'),
+    path('linkedin/', RedirectView.as_view(url='https://www.linkedin.com/company/pizzapy-ph/', permanent=False), name='linkedin'),
+    path('meetup/', RedirectView.as_view(url='https://www.meetup.com/pizzapy-ph/', permanent=False), name='meetup'),
 ]
 
 if settings.DEBUG:
