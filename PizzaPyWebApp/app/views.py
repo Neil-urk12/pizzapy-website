@@ -36,18 +36,11 @@ def get_redirect_uri(request):
     path = request.path.rstrip("/")
     parts = path.split("/")
 
-    path_to_join = None
     if len(parts) >= 3:
         if len(parts) == 3:  # URL is like /events/upcoming-events
             parts.append(default_group_name)  # Append default group name
         path_to_join = "/".join(parts)
-    else:
-        return None
-
-    if path_to_join:
-        scheme = request.scheme
-        host = request.get_host()
-        return f"{scheme}://{host}{path_to_join}"
+        return request.build_absolute_uri(path_to_join)
     else:
         return None
 
